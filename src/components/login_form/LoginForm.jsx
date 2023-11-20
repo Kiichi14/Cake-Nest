@@ -18,7 +18,7 @@ function LoginForm() {
         alert("Un prénom est obligatoire") 
         : 
         setFirstName("");
-        navigate("/order");
+        navigate("/order", {state:{name:firstName}});
     }
 
     return (

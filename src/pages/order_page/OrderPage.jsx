@@ -1,8 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function OrderPage() {
 
     const navigate = useNavigate();
+
+    const location = useLocation();
 
     const handleLogOut = () => {
         navigate('/');
@@ -10,7 +12,7 @@ function OrderPage() {
 
     return (
         <>
-            <h1>Order Page</h1>
+            <h1>Bonjour : {location.state.name}</h1>
             <button onClick={handleLogOut}>Déconnexion</button>
         </>
     )
