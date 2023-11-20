@@ -10,12 +10,12 @@ function LoginForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(firstName === "") {
-            alert("Un prénom est obligatoire")
-        } else {
-            alert(`Bonjour : ${firstName}`);
-            setFirstName("");
-        }
+        firstName === "" 
+        ? 
+        alert("Un prénom est obligatoire") 
+        : 
+        alert(`Bonjour : ${firstName}`);
+        setFirstName("");
     }
 
     return (
