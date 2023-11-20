@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
 
     const [firstName, setFirstName] = useState("");
+
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         setFirstName(event.target.value);
@@ -14,8 +17,8 @@ function LoginForm() {
         ? 
         alert("Un prénom est obligatoire") 
         : 
-        alert(`Bonjour : ${firstName}`);
         setFirstName("");
+        navigate("/order");
     }
 
     return (
