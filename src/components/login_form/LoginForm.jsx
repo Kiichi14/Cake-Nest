@@ -27,8 +27,8 @@ function LoginForm() {
                 <h3>Connectez-vous</h3>
                 <form action="submit" onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <input type="text" name="firstname" placeholder="Entrez votre prénom..." value={firstName} onChange={handleChange}/>
-                        <button type="submit">Accéder à votre espace</button>
+                        <input type="text" name="firstname" placeholder="Entrez votre prénom" value={firstName} onChange={handleChange}/>
+                        <button type="submit">Mon espace</button>
                     </div>
                 </form>
             </div>
