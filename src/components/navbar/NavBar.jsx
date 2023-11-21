@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { theme } from '../../theme/Theme';
 import MainIcon from '../main_icon/MainIcon';
+import ProfileWidget from '../profile_widget/ProfileWidget';
 
 function Navbar() {
     return (
         <NavBar>
             <MainIcon />
+            <ProfileWidget />
         </NavBar>
     )
 }
