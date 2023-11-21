@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 function OrderPage() {
 
@@ -6,14 +7,24 @@ function OrderPage() {
 
     const location = useLocation();
 
+    useEffect(() => {
+        if(location.state === null) {
+            navigate('/');
+        }    
+    }, [location.state, navigate]);
+
     const handleLogOut = () => {
         navigate('/');
     }
 
     return (
         <>
-            <h1>Bonjour : {location.state.name}</h1>
-            <button onClick={handleLogOut}>Déconnexion</button>
+        {location.state &&
+            <>
+                <h1>Bonjour : {location.state.name}</h1>
+                <button onClick={handleLogOut}>Déconnexion</button>
+            </>
+        }
         </>
     )
 }
