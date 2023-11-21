@@ -2,7 +2,7 @@ import LoginForm from "../../components/login_form/LoginForm";
 import IMAGES from "../../Images";
 import styled from 'styled-components';
 import { theme } from "../../theme/Theme";
-import './loginPage.css';
+import { Title, SubTitleH2, TitleImg } from "../../theme/Styled";
 
 function LoginPage() {
 
@@ -11,7 +11,7 @@ function LoginPage() {
             <LoginContainer className="login-container">
                 <LoginContainerElement>
                     <Title>Cake<TitleImg src={IMAGES.logo} alt="logo Cake Nest"></TitleImg>Nest</Title>
-                    <SubTitle>Bienvenue chez nous !</SubTitle>
+                    <SubTitleH2>Bienvenue chez nous !</SubTitleH2>
                 </LoginContainerElement>
                 <LoginForm />
             </LoginContainer>
@@ -52,30 +52,4 @@ const LoginContainerElement = styled.div `
     justify-content: space-between;
     gap: ${theme.spacing.xxl};
     z-index: 1;
-`
-
-const TitleImg = styled.img `
-    width: 70px;
-    margin: 0px ${theme.spacing.md};
-`
-
-const SubTitle = styled.h2 `
-        color: ${theme.colors.white};
-        font-family: 'Pacifico', cursive;
-        font-size: ${theme.fonts.size.P5};
-        border-bottom: 1px solid ${theme.colors.loginLine};
-        padding: ${theme.spacing.sm};
-        width: 100%;
-        text-align: center;
-    `
-
-const Title = styled.h1 `
-    color: ${theme.colors.primary_cake};
-    font-family: 'Open Sans', sans-serif;
-    text-transform: uppercase;
-    font-size: ${theme.fonts.size.P5};
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
 `

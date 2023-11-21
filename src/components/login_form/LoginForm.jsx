@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { theme } from "../../theme/Theme";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
+import { SubTitleH3 } from "../../theme/Styled";
 
 function LoginForm() {
 
@@ -28,7 +29,7 @@ function LoginForm() {
     return (
         <>
             <LoginFormContainer>
-                <SubTitle>Connectez-vous</SubTitle>
+                <SubTitleH3>Connectez-vous</SubTitleH3>
                 <form action="submit" onSubmit={handleSubmit}>
                     <FormLogin>
                         <InputContainer>
@@ -59,15 +60,6 @@ const InputContainer = styled.div `
         transform: translateY(-50%);
         left: 20px;
     }
-`
-
-const SubTitle = styled.h3 `
-    color: ${theme.colors.white};
-    font-family: 'Pacifico', cursive;
-    font-size: ${theme.fonts.size.P4};
-    padding: ${theme.spacing.sm};
-    text-align: center;
-    margin-bottom: ${theme.spacing.md};
 `
 
 const FormLogin = styled.div `
