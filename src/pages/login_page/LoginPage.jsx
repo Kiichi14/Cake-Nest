@@ -8,7 +8,7 @@ function LoginPage() {
 
     return (
         <>
-            <LoginContainer className="login-container">
+            <LoginContainer>
                 <LoginContainerElement>
                     <Title>Cake<TitleImg src={IMAGES.logo} alt="logo Cake Nest"></TitleImg>Nest</Title>
                     <SubTitleH2>Bienvenue chez nous !</SubTitleH2>
