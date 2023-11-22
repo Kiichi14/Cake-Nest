@@ -40,13 +40,13 @@ const SubTitleH3 = styled.h3 `
 const MainDiv = styled.div `
     flex-grow: 1;
     background: ${theme.colors.white};
-    -webkit-box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.6); 
-    box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.6);
+    -webkit-box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.2); 
+    box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.2);
     border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
     overflow-y: scroll;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
-    &::-webkit-scrollbar {
+    &::-webkit-scrollbar { /* for Chrome*/
         display: none;
     }
 `
