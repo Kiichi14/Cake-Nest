@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import { theme } from '../../theme/Theme';
 import MainIcon from '../main_icon/MainIcon';
 import ProfileWidget from '../profile_widget/ProfileWidget';
+import AdminSwitch from '../admin_switch/AdminSwitch';
 
 function Navbar() {
     return (
         <NavBar>
             <MainIcon />
+            <AdminSwitch />
             <ProfileWidget />
         </NavBar>
     )
