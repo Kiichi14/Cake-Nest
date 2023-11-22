@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../navbar/NavBar";
-import styled from 'styled-components';
-import { theme } from "../../theme/Theme";
+import { LayoutContainer } from "../../theme/Styled";
 
 function Layout()
 {
@@ -16,11 +15,3 @@ function Layout()
 }
 
 export default Layout;
-
-const LayoutContainer = styled.div `
-    background: ${theme.colors.primary_cake};
-    padding: ${theme.spacing.md} ${theme.spacing.xl};
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-`

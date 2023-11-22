@@ -46,11 +46,66 @@ const MainDiv = styled.div `
     overflow-y: scroll;
 `
 
-const CardTitle = styled.p `
-    color: ${theme.colors.dark};
-    font-family: 'Pacifico', cursive;
-    font-size: ${theme.fonts.size.P2};
-    text-align: start;
+const MenuItemContainer = styled.div `
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 60px;
+    padding: 50px 50px 150px;
+    margin: 0 auto;
 `
 
-export { Title, SubTitleH2, TitleImg, SubTitleH3, MainDiv, CardTitle };
+const CardContainer = styled.div `
+    background: ${theme.colors.white};
+    padding: ${theme.spacing.md};
+    width: 20%;
+    box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+    border-radius: ${theme.borderRadius.extraRound};
+    & .item-title {
+        color: ${theme.colors.dark};
+        font-family: 'Pacifico', cursive;
+        font-size: ${theme.fonts.size.P2};
+        text-align: start;
+    }
+    & img {
+        width: 100%;
+        margin-bottom: ${theme.spacing.md};
+    }
+    & .item-action-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: ${theme.spacing.md};
+    }
+    & .item-action-container p {
+        color: ${theme.colors.primary_cake};
+        font-family: 'Open Sans';
+    }
+    & button {
+        background: ${theme.colors.primary_cake};
+        color: ${theme.colors.white};
+        padding: ${theme.spacing.sm} ${theme.spacing.md};
+        border-radius: ${theme.borderRadius.round};
+        border: none;
+        cursor: pointer;
+    }
+`
+
+const LayoutContainer = styled.div `
+    background: ${theme.colors.primary_cake};
+    padding: ${theme.spacing.md} ${theme.spacing.xl};
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+`
+
+export { 
+    Title, 
+    SubTitleH2, 
+    TitleImg, 
+    SubTitleH3, 
+    MainDiv,
+    MenuItemContainer,
+    CardContainer,
+    LayoutContainer
+ };

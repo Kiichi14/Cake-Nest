@@ -1,10 +1,13 @@
 import { MainDiv } from "../../theme/Styled";
 import MenuItem from "../../components/menu_item/MenuItem";
 import fakeMenu2 from "../../fakeData/fakeMenu";
-import styled from "styled-components";
+import { MenuItemContainer } from "../../theme/Styled";
 
 function OrderPage() {
 
+    const handleSubmit = (id) => {
+        console.log(id);
+    };
 
     return (
         <>
@@ -16,6 +19,7 @@ function OrderPage() {
                         title={item.title}
                         price={item.price}
                         id={item.id}
+                        addProduct={handleSubmit}
                     />
                 ))}
                </MenuItemContainer> 
@@ -25,12 +29,3 @@ function OrderPage() {
 }
 
 export default OrderPage;
-
-const MenuItemContainer = styled.div `
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 60px;
-    padding: 50px 50px 150px;
-    margin: 0 auto;
-`
