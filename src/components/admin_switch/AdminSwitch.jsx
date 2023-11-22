@@ -7,7 +7,8 @@ function AdminSwitch({isAdmin, toggleAdmin}) {
     return (
         <>
             <AdminDivStyled onClick={toggleAdmin}>
-                {isAdmin === false ?
+                {isAdmin === false
+                ?
                     <>
                         <div className="switch-admin"></div>
                         <p className="switch-admin-text">Activer le Mode Admin</p>
@@ -24,9 +25,6 @@ function AdminSwitch({isAdmin, toggleAdmin}) {
 }
 
 export default AdminSwitch;
-
-// PROPS VALIDATION
-
 
 AdminSwitch.propTypes = {
     isAdmin: PropTypes.bool,
