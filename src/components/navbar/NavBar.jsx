@@ -14,16 +14,12 @@ function Navbar() {
     const handleChange = () => {
         if(admin === false) {
             setAdmin(true);
-            toast.success('Admin Activé', {
+            toast.info('Admin Activé', {
                 position: toast.POSITION.BOTTOM_RIGHT,
                 theme: "dark",
             });
         } else {
             setAdmin(false);
-            toast.info('Admin Désactivé', {
-                position: toast.POSITION.BOTTOM_RIGHT,
-                theme: "dark",
-            })
         }
     }
 

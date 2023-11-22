@@ -52,6 +52,9 @@ const AdminDivStyled = styled.div `
         order: 1;
     }
     & .switch-admin-text {
+        color: ${theme.colors.primary_cake};
+    }
+    & .switch-admin-text {
         order: 2;
     }
     & .switch-admin.active {
@@ -60,6 +63,7 @@ const AdminDivStyled = styled.div `
     }
     & .switch-admin-text.active {
         order: 1;
+        color: ${theme.colors.red};
     }
     
 `
