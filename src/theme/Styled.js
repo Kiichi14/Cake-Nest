@@ -44,6 +44,11 @@ const MainDiv = styled.div `
     box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.6);
     border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
     overflow-y: scroll;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `
 
 const MenuItemContainer = styled.div `
@@ -53,12 +58,13 @@ const MenuItemContainer = styled.div `
     gap: 60px;
     padding: 50px 50px 150px;
     margin: 0 auto;
+    justify-content: center;
 `
 
 const CardContainer = styled.div `
     background: ${theme.colors.white};
     padding: ${theme.spacing.md};
-    width: 20%;
+    width: 230px;
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
     border-radius: ${theme.borderRadius.extraRound};
     & .item-title {
@@ -86,8 +92,13 @@ const CardContainer = styled.div `
         color: ${theme.colors.white};
         padding: ${theme.spacing.sm} ${theme.spacing.md};
         border-radius: ${theme.borderRadius.round};
-        border: none;
+        border: 1px solid ${theme.colors.primary_cake};
+        transition: all linear 0.3s;
         cursor: pointer;
+    }
+    & button:hover {
+        background: ${theme.colors.white};
+        color: ${theme.colors.primary_cake};
     }
 `
 

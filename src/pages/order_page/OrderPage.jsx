@@ -11,8 +11,8 @@ function OrderPage() {
 
     return (
         <>
-           <MainDiv>
-                <MenuItemContainer>
+           <MainDiv className="main-container">
+                <MenuItemContainer className="item-container">
                 {fakeMenu2.map((item, index) => (
                     <MenuItem 
                         key={index}
