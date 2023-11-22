@@ -43,6 +43,14 @@ const MainDiv = styled.div `
     -webkit-box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.6); 
     box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.6);
     border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
+    overflow-y: scroll;
 `
 
-export { Title, SubTitleH2, TitleImg, SubTitleH3, MainDiv };
+const CardTitle = styled.p `
+    color: ${theme.colors.dark};
+    font-family: 'Pacifico', cursive;
+    font-size: ${theme.fonts.size.P2};
+    text-align: start;
+`
+
+export { Title, SubTitleH2, TitleImg, SubTitleH3, MainDiv, CardTitle };
