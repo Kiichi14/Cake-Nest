@@ -49,6 +49,7 @@ const MainDiv = styled.div `
     &::-webkit-scrollbar { /* for Chrome*/
         display: none;
     }
+    position: relative;
 `
 
 const MenuItemContainer = styled.div `

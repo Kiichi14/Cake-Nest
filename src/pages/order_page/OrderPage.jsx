@@ -2,8 +2,13 @@ import { MainDiv } from "../../theme/Styled";
 import MenuItem from "../../components/menu_item/MenuItem";
 import fakeMenu2 from "../../fakeData/fakeMenu";
 import { MenuItemContainer } from "../../theme/Styled";
+import { adminContext } from "../../store/Context";
+import { useContext } from "react";
+import AdminPanel from "../../components/admin_panel/AdminPanel";
 
 function OrderPage() {
+
+    const [admin, setAdmin] = useContext(adminContext);
 
     const handleSubmit = (id) => {
         console.log(id);
@@ -23,6 +28,7 @@ function OrderPage() {
                     />
                 ))}
                </MenuItemContainer> 
+               {admin && <AdminPanel />}
            </MainDiv>
         </>
     )

@@ -3,13 +3,14 @@ import { theme } from '../../theme/Theme';
 import MainIcon from '../main_icon/MainIcon';
 import ProfileWidget from '../profile_widget/ProfileWidget';
 import AdminSwitch from '../admin_switch/AdminSwitch';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { adminContext } from '../../store/Context';
 
 function Navbar() {
 
-    const [admin, setAdmin] = useState(false);
+    const [admin, setAdmin] = useContext(adminContext);
 
     const handleChange = () => {
         if(admin === false) {
