@@ -37,4 +37,12 @@ const SubTitleH3 = styled.h3 `
     margin-bottom: ${theme.spacing.md};
 `
 
-export { Title, SubTitleH2, TitleImg, SubTitleH3 };
+const MainDiv = styled.div `
+    flex-grow: 1;
+    background: ${theme.colors.white};
+    -webkit-box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.6); 
+    box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.6);
+    border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
+`
+
+export { Title, SubTitleH2, TitleImg, SubTitleH3, MainDiv };

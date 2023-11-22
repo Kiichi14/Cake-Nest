@@ -1,12 +1,24 @@
 import styled from 'styled-components';
 import { theme } from '../../theme/Theme';
 import { FaRegUserCircle } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function ProfileWidget() {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if(location.state.name === "") {
+            navigate('/');
+        }    
+    }, [location.state, navigate]);
+
     return (
         <ProfileDiv>
             <ProfileDetail>
-                <ProfileText>Salut <span>Etienne</span></ProfileText>
+                <ProfileText>Salut <span>{location.state.name}</span></ProfileText>
                 <ProfileLogOut href="/">Se déconnecter</ProfileLogOut>
             </ProfileDetail>
             <FaRegUserCircle size={50} />

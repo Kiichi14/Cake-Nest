@@ -20,4 +20,7 @@ export default Layout;
 const LayoutContainer = styled.div `
     background: ${theme.colors.primary_cake};
     padding: ${theme.spacing.md} ${theme.spacing.xl};
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 `
