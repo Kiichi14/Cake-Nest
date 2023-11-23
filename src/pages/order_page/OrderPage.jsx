@@ -8,7 +8,7 @@ import AdminPanel from "../../components/admin_panel/AdminPanel";
 
 function OrderPage() {
 
-    const [admin, setAdmin] = useContext(adminContext);
+    const [admin] = useContext(adminContext);
 
     const handleSubmit = (id) => {
         console.log(id);

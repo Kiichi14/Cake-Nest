@@ -1,94 +1,58 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/Theme";
-import { FaChevronUp } from "react-icons/fa6";
+import { FaChevronUp, FaChevronDown } from "react-icons/fa6";
 import { HiOutlinePlusSmall } from "react-icons/hi2";
 import { MdModeEdit } from "react-icons/md";
-import { FaChevronDown } from "react-icons/fa6";
 
-
-function AdminPanel() {
-
+const AdminPanel = () => {
     const [display, setDisplay] = useState(false);
     const [addProduct, setAddProduct] = useState(true);
-    const [updateProduct, setUpdateProduct] = useState(false);
+    const [, setUpdateProduct] = useState(false);
 
-    const handleAdd = () => {
-        setAddProduct(true)
-        setUpdateProduct(false);
-    }
-
-    const handleUpdate = () => {
-        setAddProduct(false)
-        setUpdateProduct(true);
+    const handleAddUpdateToggle = (add) => {
+        setAddProduct(add);
+        setUpdateProduct(!add);
     }
 
     const handleDisplay = () => {
-        if(display === false) {
-            setDisplay(true);
-        } else {
-            setDisplay(false);
-        }
+        setDisplay(!display);
     }
 
-    const handleSubmit = () => {
-        console.log('submit');
+    const handleSubmit = (action) => {
+        console.log(action);
     }
 
-    const handleSubmitUpdate = () => {
-        console.log('update');
-    }
-
-    return(
-        <>
-            <AdminPanelStyled>
-                <div className="admin-panel-action">
-                    {display
-                    ?
-                        <button onClick={handleDisplay} className="display-admin-panel active"><FaChevronDown /></button>
-                    :
-                        <button onClick={handleDisplay} className="display-admin-panel"><FaChevronUp color="white" /></button>
-                    }
-                    {addProduct 
-                    ?
-                        <button onClick={handleAdd} className="display-add-product active"><HiOutlinePlusSmall /> Ajouter un Produit</button>
-                    :
-                        <button onClick={handleAdd} className="display-add-product"><HiOutlinePlusSmall /> Ajouter un Produit</button>
-                    }
-                    {updateProduct
-                    ?
-                        <button onClick={handleUpdate} className="display-update-product active"><MdModeEdit /> Modifier un Produit</button>
-                    :
-                        <button onClick={handleUpdate} className="display-update-product"><MdModeEdit /> Modifier un Produit</button>
-                    }
+    return (
+        <AdminPanelStyled>
+            <div className="admin-panel-action">
+                <button onClick={handleDisplay} className={`display-admin-panel ${display ? "active" : ""}`}>
+                    {display ? <FaChevronDown /> : <FaChevronUp color="white" />}
+                </button>
+                {["add", "update"].map((action) => (
+                    <button
+                        key={action}
+                        onClick={() => handleAddUpdateToggle(action === "add")}
+                        className={`display-${action}-product ${addProduct === (action === "add") ? "active" : ""}`}
+                    >
+                        {action === "add" ? <HiOutlinePlusSmall /> : <MdModeEdit />} {action === "add" ? "Ajouter" : "Modifier"} un Produit
+                    </button>
+                ))}
+            </div>
+            {display && (
+                <div className="admin-panel-form">
+                    <form action="submit" onSubmit={() => handleSubmit(addProduct ? 'submit' : 'update')}>
+                        <p>{addProduct ? 'Ajouter' : 'Modifier'} un produit</p>
+                    </form>
                 </div>
-                {display
-                ?
-                    <div className="admin-panel-form">
-                        {addProduct
-                        &&
-                            <form action="submit" onSubmit={handleSubmit}>
-                                <p>Ajouter un produit</p>
-                            </form>
-                        }
-                        {updateProduct
-                        &&
-                            <form action="submit" onSubmit={handleSubmitUpdate}>
-                                <p>Modifier un produit</p>
-                            </form>
-                        }
-                    </div>
-                :
-                ""
-                }
-            </AdminPanelStyled>
-        </>        
-    )
+            )}
+        </AdminPanelStyled>
+    );
 }
 
 export default AdminPanel;
 
-const AdminPanelStyled = styled.div `
+const AdminPanelStyled = styled.div`
     position: sticky;
     bottom: 0px;
     left: 0px;
@@ -120,4 +84,4 @@ const AdminPanelStyled = styled.div `
     & .admin-panel-form form p {
         font-family: 'Open Sans';
     }
-`
+`;
