@@ -5,6 +5,7 @@ import { adminContext } from "../../store/Context";
 import { useContext } from "react";
 import AdminPanel from "../../components/admin_panel/AdminPanel";
 import { itemContext } from "../../store/ItemContext";
+import NoProduct from "../../components/no_product/NoProduct";
 
 function OrderPage() {
 
@@ -16,7 +17,6 @@ function OrderPage() {
     };
 
     const handleDelete = (id) => {
-        console.log(id);
         const cakeCopy = [...cake];
         const newCakeList = cakeCopy.filter(item => item.id !== id);
         setCake(newCakeList);
@@ -24,23 +24,28 @@ function OrderPage() {
 
     return (
         <>
-           <MainDiv className="main-container">
-                <MenuItemContainer className="item-container">
-                {cake.map((item, index) => (
-                    <MenuItem 
-                        key={index}
-                        title={item.title}
-                        price={item.price}
-                        id={item.id}
-                        addProduct={handleSubmit}
-                        images={item.imageSource}
-                        deleteItem={admin}
-                        deleteFunc={handleDelete}
-                    />
-                ))}
-               </MenuItemContainer> 
-               {admin && <AdminPanel />}
-           </MainDiv>
+            {cake.length === 0
+            ?
+                <NoProduct />
+            :
+                <MainDiv className="main-container">
+                    <MenuItemContainer className="item-container">
+                    {cake.map((item, index) => (
+                        <MenuItem 
+                            key={index}
+                            title={item.title}
+                            price={item.price}
+                            id={item.id}
+                            addProduct={handleSubmit}
+                            images={item.imageSource}
+                            deleteItem={admin}
+                            deleteFunc={handleDelete}
+                        />
+                    ))}
+                    </MenuItemContainer> 
+                    {admin && <AdminPanel />}
+                </MainDiv>
+            }
         </>
     )
 }

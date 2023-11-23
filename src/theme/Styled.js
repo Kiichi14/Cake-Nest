@@ -46,10 +46,32 @@ const MainDiv = styled.div `
     overflow-y: scroll;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     &::-webkit-scrollbar { /* for Chrome*/
         display: none;
     }
-    position: relative;
+    & .no-product p {
+        text-align: center;
+        font-size: ${theme.fonts.size.P4};
+        font-family: 'Pacifico';
+        color: ${theme.colors.greyDark};
+    }
+    & .no-product button {
+        background: ${theme.colors.primary};
+        border: none;
+        padding: ${theme.spacing.md};
+        border-radius: ${theme.borderRadius.round};
+        color: ${theme.colors.white};
+    }
+    & .no-product-button {
+        display: flex;
+        justify-content: center;
+        margin-top: ${theme.spacing.md};
+    }
 `
 
 const MenuItemContainer = styled.div `
