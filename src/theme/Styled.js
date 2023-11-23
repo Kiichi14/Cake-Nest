@@ -101,6 +101,13 @@ const CardContainer = styled.div `
         background: ${theme.colors.white};
         color: ${theme.colors.primary_cake};
     }
+    & .admin-delete-button {
+        display: flex;
+        justify-content: end;
+    }
+    & .admin-delete-button svg{
+        cursor: pointer;
+    }
 `
 
 const LayoutContainer = styled.div `
