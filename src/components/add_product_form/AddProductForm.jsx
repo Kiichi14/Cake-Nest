@@ -28,7 +28,12 @@ function AddProductForm() {
         <>
             <AddFormStyled action="submit" onSubmit={handleSubmit}>
                 <div className="image-preview-container">
-                    <p>Aucune Image</p>
+                    {imageSource !== ""
+                    ?
+                        <img src={imageSource} alt="image de gateau"/>
+                    :
+                        <p>Aucune Image</p>
+                    }
                 </div>
                 <div className="add-product-form">
                     <div className="form-group">
@@ -102,6 +107,10 @@ const AddFormStyled = styled.form `
         height: fit-content;
         text-align: center;
         padding: ${theme.spacing.xl};
+    }
+    & .image-preview-container img {
+        width: 200px;
+        object-fit: cover;
     }
     & .add-product-form button {
         width: 200px;
