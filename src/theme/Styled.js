@@ -43,16 +43,19 @@ const MainDiv = styled.div `
     -webkit-box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.2); 
     box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.2);
     border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
-    overflow-y: scroll;
+    overflow-y: hidden;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     &::-webkit-scrollbar { /* for Chrome*/
         display: none;
+    }
+    & .no-product {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     & .no-product p {
         text-align: center;
@@ -82,6 +85,8 @@ const MenuItemContainer = styled.div `
     padding: 50px 50px 150px;
     margin: 0 auto;
     justify-content: center;
+    height: 100%;
+    overflow-y: scroll;
 `
 
 const CardContainer = styled.div `
@@ -90,6 +95,7 @@ const CardContainer = styled.div `
     width: 230px;
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
     border-radius: ${theme.borderRadius.extraRound};
+    height: fit-content;
     & .item-title {
         color: ${theme.colors.dark};
         font-family: 'Pacifico', cursive;
@@ -97,7 +103,9 @@ const CardContainer = styled.div `
         text-align: start;
     }
     & img {
-        width: 100%;
+        width: 200px;
+        height: 150px;
+        object-fit: contain;
         margin-bottom: ${theme.spacing.md};
     }
     & .item-action-container {

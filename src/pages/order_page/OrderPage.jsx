@@ -33,11 +33,8 @@ function OrderPage() {
                     {cake.map((item, index) => (
                         <MenuItem 
                             key={index}
-                            title={item.title}
-                            price={item.price}
-                            id={item.id}
+                            {...item}
                             addProduct={handleSubmit}
-                            images={item.imageSource}
                             deleteItem={admin}
                             deleteFunc={handleDelete}
                         />

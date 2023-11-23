@@ -6,7 +6,7 @@ import { theme } from '../../theme/Theme';
 
 function MenuItem(props) {
 
-    const { title, price, id, addProduct, images, deleteItem, deleteFunc } = props;
+    const { title, price, id, addProduct, imageSource, deleteItem, deleteFunc } = props;
 
     return (
         <>
@@ -17,7 +17,7 @@ function MenuItem(props) {
                 :
                     ""
                 }
-                <img src={images} alt="image de gateau" />
+                <img src={imageSource} alt="image de gateau" />
                 <p className="item-title">{title}</p>
                 <div className="item-action-container">
                     <p>{formatPrice(price)}</p>
@@ -37,7 +37,7 @@ MenuItem.propTypes = {
     price: PropTypes.number,
     id: PropTypes.number,
     addProduct: PropTypes.func,
-    images: PropTypes.string,
+    imageSource: PropTypes.string,
     deleteItem: PropTypes.bool,
     deleteFunc: PropTypes.func
 };

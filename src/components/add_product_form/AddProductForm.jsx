@@ -5,6 +5,7 @@ import { FaCamera } from "react-icons/fa";
 import { FaEuroSign } from "react-icons/fa";
 import { itemContext } from "../../store/ItemContext";
 import { useContext, useState } from "react";
+import { CiCircleCheck } from "react-icons/ci";
 
 function AddProductForm() {
 
@@ -12,6 +13,7 @@ function AddProductForm() {
     const [title, setTitle] = useState("");
     const [imageSource, setImageSource] = useState("");
     const [price, setPrice] = useState(0);
+    const [success, setSuccess] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -22,6 +24,10 @@ function AddProductForm() {
         const newPrice = price;
         cakeCopy.push({id: id, title: newTitle, imageSource: newImageSource, price: newPrice})
         setCake(cakeCopy);
+        setSuccess(!success);
+        setTimeout(() => {
+            setSuccess(false);
+        }, 2000);
     }
 
     return(
@@ -48,7 +54,10 @@ function AddProductForm() {
                         <FaEuroSign />
                         <input type="number" name="price" step="0.01" value={price} onChange={(event) => setPrice(event.target.value)} placeholder="Prix"/>
                     </div>
-                    <button type="submit">Ajouter un nouveau produit</button>
+                    <div className="success-submit">
+                        <button type="submit">Ajouter un nouveau produit</button>
+                        {success ?<p><CiCircleCheck size={20}/> Ajouté avec succès</p> : ""}
+                    </div>
                 </div>
             </AddFormStyled>
         </>
@@ -120,5 +129,11 @@ const AddFormStyled = styled.form `
         border-radius: ${theme.borderRadius.round};
         color: ${theme.colors.white};
         font-family: 'Open Sans';
+    }
+    & .success-submit, .success-submit p {
+        display: flex;
+        align-items: center;
+        gap: ${theme.spacing.sm};
+        color: ${theme.colors.success};
     }
 `

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function AdminSwitch({isAdmin, toggleAdmin}) {
     return (
         <>
-            <AdminDivStyled onClick={toggleAdmin}>
+            <AdminDivStyled active={isAdmin} onClick={toggleAdmin}>
                 {isAdmin === false
                 ?
                     <>
@@ -32,7 +32,9 @@ AdminSwitch.propTypes = {
 };
 
 const AdminDivStyled = styled.div `
-    background : ${theme.colors.background_dark};
+    /* background : ${theme.colors.background_dark}; */
+    background: ${props => props.active ? theme.colors.background_light : theme.colors.background_dark};
+    border: ${props => props.active ? `1px solid ${theme.colors.primary_cake}` : `1px solid ${theme.colors.dark}`};
     display: flex;
     gap: ${theme.spacing.sm};
     align-items: center;
@@ -56,12 +58,13 @@ const AdminDivStyled = styled.div `
         order: 2;
     }
     & .switch-admin.active {
-        background: ${theme.colors.red};
+        background: ${theme.colors.primary_cake};
+        border: ${theme.colors.primary_cake};
         order: 2;
     }
     & .switch-admin-text.active {
         order: 1;
-        color: ${theme.colors.red};
+        color: ${theme.colors.primary_cake};
     }
     
 `
