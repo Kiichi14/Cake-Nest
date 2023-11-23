@@ -3,12 +3,25 @@ import { theme } from "../../theme/Theme";
 import { GiCupcake } from "react-icons/gi";
 import { FaCamera } from "react-icons/fa";
 import { FaEuroSign } from "react-icons/fa";
+import { itemContext } from "../../store/ItemContext";
+import { useContext, useState } from "react";
 
 function AddProductForm() {
 
+    const [cake, setCake] = useContext(itemContext);
+    const [title, setTitle] = useState("");
+    const [imageSource, setImageSource] = useState("");
+    const [price, setPrice] = useState(0);
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('submit');
+        const cakeCopy = [...cake];
+        const id = new Date().getTime();
+        const newTitle = title;
+        const newImageSource = imageSource;
+        const newPrice = price;
+        cakeCopy.push({id: id, title: newTitle, imageSource: newImageSource, price: newPrice})
+        setCake(cakeCopy);
     }
 
     return(
@@ -20,15 +33,15 @@ function AddProductForm() {
                 <div className="add-product-form">
                     <div className="form-group">
                         <GiCupcake />
-                        <input type="text" name="title" placeholder="Nom du produit" />
+                        <input type="text" name="title" placeholder="Nom du produit" value={title} onChange={(event) => setTitle(event.target.value)}/>
                     </div>
                     <div className="form-group">
                         <FaCamera />
-                        <input type="text" name="imageSource" placeholder="Lien URL d'une image (ex:https://la-photo-de-mon-produit.png)"/>
+                        <input type="text" name="imageSource" value={imageSource} onChange={(event) => setImageSource(event.target.value)} placeholder="Lien URL d'une image (ex:https://la-photo-de-mon-produit.png)"/>
                     </div>
                     <div className="form-group">
                         <FaEuroSign />
-                        <input type="number" name="price" step="0.01" placeholder="Prix"/>
+                        <input type="number" name="price" step="0.01" value={price} onChange={(event) => setPrice(event.target.value)} placeholder="Prix"/>
                     </div>
                     <button type="submit">Ajouter un nouveau produit</button>
                 </div>
