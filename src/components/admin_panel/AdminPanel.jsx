@@ -4,6 +4,8 @@ import { theme } from "../../theme/Theme";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa6";
 import { HiOutlinePlusSmall } from "react-icons/hi2";
 import { MdModeEdit } from "react-icons/md";
+import AddProductForm from "../add_product_form/AddProductForm";
+import UpdateProduct from "../update_product_form/UpdateProduct";
 
 const AdminPanel = () => {
     const [display, setDisplay] = useState(false);
@@ -17,10 +19,6 @@ const AdminPanel = () => {
 
     const handleDisplay = () => {
         setDisplay(!display);
-    }
-
-    const handleSubmit = (action) => {
-        console.log(action);
     }
 
     return (
@@ -41,9 +39,12 @@ const AdminPanel = () => {
             </div>
             {display && (
                 <div className="admin-panel-form">
-                    <form action="submit" onSubmit={() => handleSubmit(addProduct ? 'submit' : 'update')}>
-                        <p>{addProduct ? 'Ajouter' : 'Modifier'} un produit</p>
-                    </form>
+                    {addProduct
+                    ?
+                        <AddProductForm />
+                    :
+                        <UpdateProduct />
+                    }
                 </div>
             )}
         </AdminPanelStyled>
@@ -73,15 +74,5 @@ const AdminPanelStyled = styled.div`
     & .display-add-product.active, .display-update-product.active {
         background: ${theme.colors.white};
         color: ${theme.colors.greyMedium};
-    }
-    & .admin-panel-form form {
-        width: 100%;
-        height: 40vh;
-        background: white;
-        border-radius: 0px 0px ${theme.borderRadius.round} ${theme.borderRadius.round};
-        padding: ${theme.spacing.md};
-    }
-    & .admin-panel-form form p {
-        font-family: 'Open Sans';
     }
 `;
