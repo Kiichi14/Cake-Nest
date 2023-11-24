@@ -54,7 +54,7 @@ const AdminPanel = () => {
 export default AdminPanel;
 
 const AdminPanelStyled = styled.div`
-    position: sticky;
+    position: absolute;
     bottom: 0px;
     left: 0px;
     width: 100%;

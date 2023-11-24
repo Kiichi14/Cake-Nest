@@ -32,7 +32,6 @@ AdminSwitch.propTypes = {
 };
 
 const AdminDivStyled = styled.div `
-    /* background : ${theme.colors.background_dark}; */
     background: ${props => props.active ? theme.colors.background_light : theme.colors.background_dark};
     border: ${props => props.active ? `1px solid ${theme.colors.primary_cake}` : `1px solid ${theme.colors.dark}`};
     display: flex;
