@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/Theme";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa6";
@@ -6,15 +6,18 @@ import { HiOutlinePlusSmall } from "react-icons/hi2";
 import { MdModeEdit } from "react-icons/md";
 import AddProductForm from "../add_product_form/AddProductForm";
 import UpdateProduct from "../update_product_form/UpdateProduct";
+import { updateContext } from "../../store/UpdateContext";
 
 const AdminPanel = () => {
     const [display, setDisplay] = useState(false);
     const [addProduct, setAddProduct] = useState(true);
-    const [, setUpdateProduct] = useState(false);
+    // const [, setIsUpdate] = useContext(updateContext);
+    const { isUpdate } = useContext(updateContext);
+    const [, setSelectUpdate] = isUpdate;
 
     const handleAddUpdateToggle = (add) => {
         setAddProduct(add);
-        setUpdateProduct(!add);
+        setSelectUpdate(!add);
     }
 
     const handleDisplay = () => {

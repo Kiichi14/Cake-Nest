@@ -3,14 +3,25 @@ import { CardContainer } from '../../theme/Styled';
 import { formatPrice } from '../../utils/maths';
 import { TiDelete } from "react-icons/ti";
 import { theme } from '../../theme/Theme';
+import { updateContext } from '../../store/UpdateContext';
+import { adminContext } from '../../store/Context';
+import { useContext } from 'react';
 
 function MenuItem(props) {
 
     const { title, price, id, addProduct, imageSource, deleteItem, deleteFunc } = props;
+    const { isUpdate, isSelect }= useContext(updateContext);
+    const [selectUpdate] = isUpdate;
+    const [itemSelect, setItemSelect] = isSelect;
+    const [admin] = useContext(adminContext)
+
+    const handleSelect = (id) => {
+        setItemSelect(id);
+    }
 
     return (
         <>
-            <CardContainer>
+            <CardContainer active={selectUpdate && admin} onClick={admin ? () => handleSelect(id) : null} cardSelect={selectUpdate && admin && itemSelect === id}>
                 {deleteItem
                 ?
                     <div className="admin-delete-button"><TiDelete onClick={() => deleteFunc(id)} color={theme.colors.primary_cake} size={25}/></div>

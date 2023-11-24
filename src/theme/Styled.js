@@ -90,12 +90,18 @@ const MenuItemContainer = styled.div `
 `
 
 const CardContainer = styled.div `
-    background: ${theme.colors.white};
+    background: ${props => props.cardSelect ? theme.colors.primary_cake : theme.colors.white};
     padding: ${theme.spacing.md};
     width: 230px;
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
     border-radius: ${theme.borderRadius.extraRound};
     height: fit-content;
+    transition: all linear 0.3s;
+    cursor: ${props => props.active ? "pointer" : "default"};
+    &:hover {
+        box-shadow: ${props => props.active ? "0 0 12px 0 rgb(122 180 184 / 100%)" : ""};
+        transform: ${props => props.active ? "scale(1.05)" : ""};
+    }
     & .item-title {
         color: ${theme.colors.dark};
         font-family: 'Pacifico', cursive;
@@ -115,7 +121,8 @@ const CardContainer = styled.div `
         margin-top: ${theme.spacing.md};
     }
     & .item-action-container p {
-        color: ${theme.colors.primary_cake};
+        /* color: ${theme.colors.primary_cake}; */
+        color: ${props => props.cardSelect ? theme.colors.white : theme.colors.primary_cake};
         font-family: 'Open Sans';
     }
     & button {
