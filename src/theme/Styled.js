@@ -155,6 +155,84 @@ const LayoutContainer = styled.div `
     flex-direction: column;
 `
 
+const AddFormStyled = styled.form `
+    width: 100%;
+    height: 30vh;
+    background: white;
+    border-radius: 0px 0px ${theme.borderRadius.round} ${theme.borderRadius.round};
+    padding: ${theme.spacing.md};
+    display: flex;
+    justify-content: space-between;
+    & p {
+        font-family: 'Open Sans';
+    }
+    & .add-product-form {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: ${theme.spacing.sm};
+    }
+    & .add-product-form input {
+        width: 50%;
+        border: none;
+        background: ${theme.colors.background_white};
+        padding: ${theme.spacing.sm} ${theme.spacing.xl};
+        border-radius: ${theme.borderRadius.round};
+        font-family: 'Open Sans';
+    }
+    & .add-product-form input::placeholder {
+        color: ${theme.colors.greyMedium};
+    }
+    & .form-group {
+        position: relative;
+    }
+    & .form-group svg {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+    }
+    & .image-preview-container {
+        width: 30%;
+        display: flex;
+        justify-content: end;
+        padding: 0px ${theme.spacing.xl};
+    }
+    & .image-preview-container p {
+        border: 1px solid ${theme.colors.greyLight};
+        color: ${theme.colors.greyLight};
+        width: 70%;
+        height: fit-content;
+        text-align: center;
+        padding: ${theme.spacing.xl};
+    }
+    & .image-preview-container img {
+        width: 200px;
+        object-fit: cover;
+    }
+    & .add-product-form button {
+        width: 200px;
+        border: none;
+        background: ${theme.colors.success};
+        padding: ${theme.spacing.sm};
+        border-radius: ${theme.borderRadius.round};
+        color: ${theme.colors.white};
+        font-family: 'Open Sans';
+    }
+    & .success-submit, .success-submit p {
+        display: flex;
+        align-items: center;
+        gap: ${theme.spacing.sm};
+        color: ${theme.colors.success};
+    }
+    & .add-update-product {
+        font-family: 'Pacifico';
+        font-size: ${theme.fonts.size.P3};
+        padding: ${theme.spacing.xl};
+        color: ${theme.colors.greySemiDark};
+    }
+`
+
 export { 
     Title, 
     SubTitleH2, 
@@ -163,5 +241,6 @@ export {
     MainDiv,
     MenuItemContainer,
     CardContainer,
-    LayoutContainer
+    LayoutContainer,
+    AddFormStyled
  };

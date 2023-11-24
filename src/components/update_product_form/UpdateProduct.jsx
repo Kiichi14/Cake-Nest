@@ -1,9 +1,11 @@
-import styled from "styled-components";
-import { theme } from "../../theme/Theme";
 import { HiCursorClick } from "react-icons/hi";
 import { updateContext } from "../../store/UpdateContext";
 import { itemContext } from "../../store/ItemContext";
 import { useContext, useEffect, useState } from "react";
+import { GiCupcake } from "react-icons/gi";
+import { FaCamera } from "react-icons/fa";
+import { FaEuroSign } from "react-icons/fa";
+import { AddFormStyled } from "../../theme/Styled";
 
 function UpdateProduct() {
 
@@ -41,21 +43,24 @@ function UpdateProduct() {
 
     return (
         <>
-            <UpdateFormStyled>
+            <AddFormStyled>
                 {itemSelect 
                 ?
                     <>
-                    <div className="update-image-preview">
+                    <div className="image-preview-container">
                         <img src={selectImg} alt="image de gateau" />
                     </div>
-                    <div className="update-input-container">
+                    <div className="add-product-form">
                         <div className="form-group">
+                            <GiCupcake />
                             <input type="text" name="title" value={selectTitle} onChange={handleChange}/>
                         </div>
                         <div className="form-group">
+                            <FaCamera />
                             <input type="text" name="imageSource" value={selectImg} onChange={handleChange}/>
                         </div>
                         <div className="form-group">
+                            <FaEuroSign />
                             <input type="number" step="0.01" name="price" value={selectPrice} onChange={handleChange}/>
                         </div>
                     </div>
@@ -63,25 +68,9 @@ function UpdateProduct() {
                 :
                     <p className="add-update-product">Cliquez sur un produit pour le modifier <HiCursorClick /></p>   
                 }
-            </UpdateFormStyled> 
+            </AddFormStyled> 
         </>
     )
 }
 
 export default UpdateProduct
-
-const UpdateFormStyled = styled.form `
-    width: 100%;
-    height: 30vh;
-    background: white;
-    border-radius: 0px 0px ${theme.borderRadius.round} ${theme.borderRadius.round};
-    padding: ${theme.spacing.md};
-    display: flex;
-    justify-content: space-between;
-    & p.add-update-product {
-        font-family: 'Pacifico';
-        color: ${theme.colors.greyDark};
-        font-size: ${theme.fonts.size.P3};
-        padding: ${theme.spacing.xl};
-    }
-`
