@@ -3,6 +3,7 @@ import { theme } from "../../theme/Theme";
 import PropTypes from 'prop-types';
 import { formatPrice } from '../../utils/maths';
 import { MdDeleteForever } from "react-icons/md";
+import IMAGES from "../../Images";
 
 function CartItem(props) {
 
@@ -11,7 +12,7 @@ function CartItem(props) {
     return(
         <> 
             <CartItemStyled>
-                <img src={image} alt="image de gateau" />
+                <img src={image !== "" ? image : IMAGES.menuItem} alt="image de gateau" />
                 <div className="cart-item-description">
                     <p className="cart-item-title">{title}</p>
                     <p className="cart-item-price">{formatPrice(price)}</p>

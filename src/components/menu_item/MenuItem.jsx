@@ -7,11 +7,13 @@ import { updateContext } from '../../store/UpdateContext';
 import { adminContext } from '../../store/Context';
 import { useContext } from 'react';
 import { itemContext } from '../../store/ItemContext';
+import { CartContext } from '../../store/CartContext';
 
 function MenuItem(props) {
 
     const { title, price, id, addProduct, imageSource, deleteItem } = props;
     const { isUpdate, isSelect }= useContext(updateContext);
+    const { cartItems, setCartItems } = useContext(CartContext);
     const [selectUpdate] = isUpdate;
     const [itemSelect, setItemSelect] = isSelect;
     const [admin] = useContext(adminContext);
@@ -21,11 +23,19 @@ function MenuItem(props) {
         setItemSelect(id);
     }
 
+    const handleAdd = (event) => {
+        event.stopPropagation();
+        addProduct();
+    } 
+
     const handleDelete = (event) => {
         event.stopPropagation();
         const cakeCopy = [...cake];
+        const cartCopy = [...cartItems];
+        const newCartList = cartCopy.filter(item => item.id !== id);
         const newCakeList = cakeCopy.filter(item => item.id !== id);
         setCake(newCakeList);
+        setCartItems(newCartList);
     }
 
     return (
@@ -41,7 +51,7 @@ function MenuItem(props) {
                 <p className="item-title">{title}</p>
                 <div className="item-action-container">
                     <p>{formatPrice(price)}</p>
-                    <button onClick={addProduct}>Ajouter</button>
+                    <button onClick={handleAdd}>Ajouter</button>
                 </div>
             </CardContainer>
         </>

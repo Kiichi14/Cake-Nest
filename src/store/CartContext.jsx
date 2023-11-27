@@ -20,12 +20,29 @@ export const CartProvider = ({ children }) => {
             )
         );
         } else {
-        setCartItems([...cartItems, { ...item, quantity: 1 }]);
+        setCartItems([...cartItems, { id: item.id , quantity: 1 }]);
         }
     };
 
-    const getCartTotal = () => {
-        const total = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    // const getCartTotal = () => {
+    //     const total = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    //     return formatPrice(total);
+    // };
+
+    const getCartTotal = (itemContext) => {
+        const total = cartItems.reduce((acc, item) => {
+            const foundItem = itemContext.find(contextItem => contextItem.id === item.id);
+    
+            if (foundItem) {
+                const itemPrice = foundItem.price;
+                console.log(itemPrice);
+                return acc + itemPrice * item.quantity;
+            } else {
+                console.error(`Prix non trouvé pour l'item avec l'ID ${item.id}`);
+                return acc;
+            }
+        }, 0);
+    
         return formatPrice(total);
     };
 
@@ -49,6 +66,7 @@ export const CartProvider = ({ children }) => {
         <CartContext.Provider
           value={{
             cartItems,
+            setCartItems,
             addToCart,
             getCartTotal,
             removeFromCart
