@@ -6,6 +6,9 @@ import { useContext } from "react";
 import AdminPanel from "../../components/admin_panel/AdminPanel";
 import { itemContext } from "../../store/ItemContext";
 import NoProduct from "../../components/no_product/NoProduct";
+import Cart from "../../components/cart/Cart";
+import styled from "styled-components";
+import { theme } from "../../theme/Theme";
 
 function OrderPage() {
 
@@ -23,17 +26,22 @@ function OrderPage() {
                 <NoProduct />
             :
                 <MainDiv className="main-container">
-                    <MenuItemContainer className="item-container">
-                    {cake.map((item, index) => (
-                        <MenuItem 
-                            key={index}
-                            {...item}
-                            addProduct={handleSubmit}
-                            deleteItem={admin}
-                        />
-                    ))}
-                    </MenuItemContainer> 
-                    {admin && <AdminPanel />}
+                    <MainCartStyled>
+                        <Cart />
+                    </MainCartStyled>
+                    <MainItemStyled>
+                        <MenuItemContainer className="item-container">
+                        {cake.map((item, index) => (
+                            <MenuItem 
+                                key={index}
+                                {...item}
+                                addProduct={handleSubmit}
+                                deleteItem={admin}
+                            />
+                        ))}
+                        </MenuItemContainer> 
+                        {admin && <AdminPanel />}
+                    </MainItemStyled>
                 </MainDiv>
             }
         </>
@@ -41,3 +49,11 @@ function OrderPage() {
 }
 
 export default OrderPage;
+
+const MainItemStyled = styled.div `
+    position: relative;
+`
+
+const MainCartStyled = styled.div `
+
+`

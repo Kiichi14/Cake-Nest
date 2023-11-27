@@ -38,6 +38,7 @@ const SubTitleH3 = styled.h3 `
 `
 
 const MainDiv = styled.div `
+    display: flex;
     flex-grow: 1;
     background: ${theme.colors.white};
     -webkit-box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.2); 
@@ -46,7 +47,7 @@ const MainDiv = styled.div `
     overflow-y: hidden;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
-    position: relative;
+    /* position: relative; */
     &::-webkit-scrollbar { /* for Chrome*/
         display: none;
     }
