@@ -47,6 +47,9 @@ const MainDiv = styled.div `
     overflow-y: hidden;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
+    &.no-product-container {
+        display: block;
+    }
     &::-webkit-scrollbar { /* for Chrome*/
         display: none;
     }
@@ -77,6 +80,7 @@ const MainDiv = styled.div `
     }
     & .main-item-container {
         position: relative;
+        width: 100%;
     }
 `
 
@@ -110,6 +114,10 @@ const CardContainer = styled.div `
         font-family: 'Pacifico', cursive;
         font-size: ${theme.fonts.size.P2};
         text-align: start;
+        width: 180px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     & img {
         width: 200px;

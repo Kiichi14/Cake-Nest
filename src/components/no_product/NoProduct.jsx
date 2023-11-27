@@ -7,7 +7,7 @@ import fakeMenu2 from "../../fakeData/fakeMenu";
 function NoProduct() {
 
     const [admin] = useContext(adminContext);
-    const [,setCake] = useContext(itemContext);
+    const [, setCake] = useContext(itemContext);
 
     const handleGenerate = () => {
         setCake(fakeMenu2);
@@ -15,7 +15,7 @@ function NoProduct() {
 
     return(
         <>
-            <MainDiv>
+            <MainDiv className="no-product-container">
                 {admin
                 ?
                     <div className="no-product">

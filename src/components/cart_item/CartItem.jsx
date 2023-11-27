@@ -61,6 +61,10 @@ const CartItemStyled = styled.div `
     & .cart-item-title {
         color: ${theme.colors.background_dark};
         font-size: ${theme.fonts.size.P2};
+        width: 130px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     & .cart-item-price {
         color: ${theme.colors.primary_cake};

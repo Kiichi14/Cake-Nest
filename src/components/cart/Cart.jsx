@@ -10,8 +10,6 @@ function Cart() {
     const { cartItems, removeFromCart, getCartTotal } = useContext(CartContext);
     const [cakes] = useContext(itemContext);
 
-    console.log(cartItems);
-
     return (
         <>
             <CartStyled>
@@ -57,6 +55,11 @@ const CartStyled = styled.div `
     font-size: ${theme.fonts.size.P2};
     box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.2);
     overflow-y: scroll;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    &::-webkit-scrollbar { /* for Chrome*/
+        display: none;
+    }
     & .cart-total-container {
         background: ${theme.colors.background_dark};
         color: ${theme.colors.primary_cake};
