@@ -24,7 +24,7 @@ function UpdateProduct() {
             setSelectImg(selectCake[0].imageSource);
             setSelectPrice(selectCake[0].price);
         }
-    }, [itemSelect, cake]);
+    }, [cake, itemSelect]);
 
     const handleChange = (event) => {
         const updatedCakes = [...cake];

@@ -6,17 +6,26 @@ import { theme } from '../../theme/Theme';
 import { updateContext } from '../../store/UpdateContext';
 import { adminContext } from '../../store/Context';
 import { useContext } from 'react';
+import { itemContext } from '../../store/ItemContext';
 
 function MenuItem(props) {
 
-    const { title, price, id, addProduct, imageSource, deleteItem, deleteFunc } = props;
+    const { title, price, id, addProduct, imageSource, deleteItem } = props;
     const { isUpdate, isSelect }= useContext(updateContext);
     const [selectUpdate] = isUpdate;
     const [itemSelect, setItemSelect] = isSelect;
-    const [admin] = useContext(adminContext)
+    const [admin] = useContext(adminContext);
+    const [cake, setCake] = useContext(itemContext)
 
     const handleSelect = (id) => {
         setItemSelect(id);
+    }
+
+    const handleDelete = (event) => {
+        event.stopPropagation();
+        const cakeCopy = [...cake];
+        const newCakeList = cakeCopy.filter(item => item.id !== id);
+        setCake(newCakeList);
     }
 
     return (
@@ -24,7 +33,7 @@ function MenuItem(props) {
             <CardContainer active={selectUpdate && admin} onClick={admin ? () => handleSelect(id) : null} cardSelect={selectUpdate && admin && itemSelect === id}>
                 {deleteItem
                 ?
-                    <div className="admin-delete-button"><TiDelete onClick={() => deleteFunc(id)} color={theme.colors.primary_cake} size={25}/></div>
+                    <div className="admin-delete-button"><TiDelete onClick={handleDelete} color={theme.colors.primary_cake} size={25}/></div>
                 :
                     ""
                 }

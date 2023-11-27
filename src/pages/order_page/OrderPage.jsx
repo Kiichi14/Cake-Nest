@@ -10,17 +10,11 @@ import NoProduct from "../../components/no_product/NoProduct";
 function OrderPage() {
 
     const [admin] = useContext(adminContext);
-    const [cake, setCake] = useContext(itemContext);
+    const [cake] = useContext(itemContext);
 
     const handleSubmit = (id) => {
         console.log(id);
     };
-
-    const handleDelete = (id) => {
-        const cakeCopy = [...cake];
-        const newCakeList = cakeCopy.filter(item => item.id !== id);
-        setCake(newCakeList);
-    }
 
     return (
         <>
@@ -36,7 +30,6 @@ function OrderPage() {
                             {...item}
                             addProduct={handleSubmit}
                             deleteItem={admin}
-                            deleteFunc={handleDelete}
                         />
                     ))}
                     </MenuItemContainer> 
