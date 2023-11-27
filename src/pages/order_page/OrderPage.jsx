@@ -7,8 +7,6 @@ import AdminPanel from "../../components/admin_panel/AdminPanel";
 import { itemContext } from "../../store/ItemContext";
 import NoProduct from "../../components/no_product/NoProduct";
 import Cart from "../../components/cart/Cart";
-import styled from "styled-components";
-import { theme } from "../../theme/Theme";
 
 function OrderPage() {
 
@@ -26,10 +24,10 @@ function OrderPage() {
                 <NoProduct />
             :
                 <MainDiv className="main-container">
-                    <MainCartStyled>
+                    <div className="main-cart-container">
                         <Cart />
-                    </MainCartStyled>
-                    <MainItemStyled>
+                    </div>
+                    <div className="main-item-container">
                         <MenuItemContainer className="item-container">
                         {cake.map((item, index) => (
                             <MenuItem 
@@ -41,7 +39,7 @@ function OrderPage() {
                         ))}
                         </MenuItemContainer> 
                         {admin && <AdminPanel />}
-                    </MainItemStyled>
+                    </div>
                 </MainDiv>
             }
         </>
@@ -49,11 +47,3 @@ function OrderPage() {
 }
 
 export default OrderPage;
-
-const MainItemStyled = styled.div `
-    position: relative;
-`
-
-const MainCartStyled = styled.div `
-
-`

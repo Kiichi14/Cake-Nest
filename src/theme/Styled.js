@@ -47,7 +47,6 @@ const MainDiv = styled.div `
     overflow-y: hidden;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
-    /* position: relative; */
     &::-webkit-scrollbar { /* for Chrome*/
         display: none;
     }
@@ -75,6 +74,9 @@ const MainDiv = styled.div `
         display: flex;
         justify-content: center;
         margin-top: ${theme.spacing.md};
+    }
+    & .main-item-container {
+        position: relative;
     }
 `
 
@@ -122,7 +124,6 @@ const CardContainer = styled.div `
         margin-top: ${theme.spacing.md};
     }
     & .item-action-container p {
-        /* color: ${theme.colors.primary_cake}; */
         color: ${props => props.cardSelect ? theme.colors.white : theme.colors.primary_cake};
         font-family: 'Open Sans';
     }
@@ -202,7 +203,7 @@ const AddFormStyled = styled.form `
     & .image-preview-container p {
         border: 1px solid ${theme.colors.greyLight};
         color: ${theme.colors.greyLight};
-        width: 70%;
+        width: 90%;
         height: fit-content;
         text-align: center;
         padding: ${theme.spacing.xl};
