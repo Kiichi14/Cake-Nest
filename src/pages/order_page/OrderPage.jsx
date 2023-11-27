@@ -7,14 +7,16 @@ import AdminPanel from "../../components/admin_panel/AdminPanel";
 import { itemContext } from "../../store/ItemContext";
 import NoProduct from "../../components/no_product/NoProduct";
 import Cart from "../../components/cart/Cart";
+import { CartContext } from "../../store/CartContext";
 
 function OrderPage() {
 
     const [admin] = useContext(adminContext);
     const [cake] = useContext(itemContext);
+    const { addToCart } = useContext(CartContext);
 
-    const handleSubmit = (id) => {
-        console.log(id);
+    const handleSubmit = (item) => {
+       addToCart(item);
     };
 
     return (
@@ -33,7 +35,7 @@ function OrderPage() {
                             <MenuItem 
                                 key={index}
                                 {...item}
-                                addProduct={handleSubmit}
+                                addProduct={() => handleSubmit(item)}
                                 deleteItem={admin}
                             />
                         ))}

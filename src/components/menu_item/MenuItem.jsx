@@ -41,7 +41,7 @@ function MenuItem(props) {
                 <p className="item-title">{title}</p>
                 <div className="item-action-container">
                     <p>{formatPrice(price)}</p>
-                    <button onClick={() => addProduct(id)}>Ajouter</button>
+                    <button onClick={addProduct}>Ajouter</button>
                 </div>
             </CardContainer>
         </>

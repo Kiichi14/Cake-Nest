@@ -1,16 +1,37 @@
 import styled from "styled-components";
 import { theme } from "../../theme/Theme";
+import { useContext } from 'react';
+import { CartContext } from "../../store/CartContext";
+import CartItem from "../cart_item/CartItem";
 
 function Cart() {
+
+    const { cartItems, removeFromCart, getCartTotal } = useContext(CartContext);
+
     return (
         <>
             <CartStyled>
                 <div className="cart-total-container">
                     <p>Total</p>
-                    <p>0,00€</p>
+                    <p>{getCartTotal()}</p>
                 </div>
                 <div className="cart-item-container">
-                    <p>Votre commande est vide</p>
+                    {cartItems.length === 0
+                    ?
+                        <p>Votre commande est vide</p>
+                    :
+                        cartItems.map((item) => (
+                            <>
+                                <CartItem 
+                                    image={item.imageSource}
+                                    title={item.title}
+                                    price={item.price}
+                                    quantity={item.quantity}
+                                    removeItem={() => removeFromCart(item)}
+                                />
+                            </>
+                        ))
+                    }
                 </div>
             </CartStyled>
         </>
@@ -20,7 +41,7 @@ function Cart() {
 export default Cart;
 
 const CartStyled = styled.div `
-    width: 300px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -40,5 +61,7 @@ const CartStyled = styled.div `
         justify-content: center;
         align-items: center;
         color: ${theme.colors.greyMedium};
+        flex-direction: column;
+        gap: ${theme.spacing.md};
     }
 `;
