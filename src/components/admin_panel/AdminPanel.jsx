@@ -11,7 +11,6 @@ import { updateContext } from "../../store/UpdateContext";
 const AdminPanel = () => {
     const [display, setDisplay] = useState(false);
     const [addProduct, setAddProduct] = useState(true);
-    // const [, setIsUpdate] = useContext(updateContext);
     const { isUpdate } = useContext(updateContext);
     const [, setSelectUpdate] = isUpdate;
 

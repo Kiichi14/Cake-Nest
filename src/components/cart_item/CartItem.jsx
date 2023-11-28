@@ -4,14 +4,25 @@ import PropTypes from 'prop-types';
 import { formatPrice } from '../../utils/maths';
 import { MdDeleteForever } from "react-icons/md";
 import IMAGES from "../../Images";
+import { adminContext } from "../../store/Context";
+import { updateContext } from "../../store/UpdateContext";
+import { useContext } from "react";
 
 function CartItem(props) {
 
-    const { image, title, price, quantity, removeItem } = props;
+    const { image, title, price, quantity, removeItem, id } = props;
+    const { isUpdate, isSelect }= useContext(updateContext);
+    const [selectUpdate] = isUpdate;
+    const [itemSelect, setItemSelect] = isSelect;
+    const [admin] = useContext(adminContext);
+
+    const handleSelect = (id) => {
+        setItemSelect(id);
+    }
 
     return(
         <> 
-            <CartItemStyled>
+            <CartItemStyled active={selectUpdate && admin} onClick={() => handleSelect(id)} cardSelect={selectUpdate && admin && itemSelect === id}>
                 <img src={image !== "" ? image : IMAGES.menuItem} alt="image de gateau" />
                 <div className="cart-item-description">
                     <p className="cart-item-title">{title}</p>
@@ -33,13 +44,14 @@ CartItem.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
     quantity: PropTypes.number,
-    removeItem: PropTypes.func
+    removeItem: PropTypes.func,
+    id: PropTypes.number
 };
 
 // STYLED COMPONENTS
 
 const CartItemStyled = styled.div `
-    background: ${theme.colors.background_white};
+    background: ${props => props.cardSelect ? theme.colors.primary_cake : theme.colors.white};
     box-shadow: 0px 6px 11px 5px rgba(0,0,0,0.2);
     display: flex;
     justify-content: space-evenly;
@@ -49,6 +61,8 @@ const CartItemStyled = styled.div `
     border-radius: ${theme.borderRadius.round};
     position: relative;
     overflow: hidden;
+    cursor: ${props => props.active ? "pointer" : "default"};
+    transition: all linear 0.3s;
     & img, .cart-item-description, .cart-item-quantity {
         width: 33%;
         display: flex;
@@ -59,7 +73,7 @@ const CartItemStyled = styled.div `
         gap: ${theme.spacing.sm};
     }
     & .cart-item-title {
-        color: ${theme.colors.background_dark};
+        color: ${props => props.cardSelect ? theme.colors.white : theme.colors.background_dark};
         font-size: ${theme.fonts.size.P2};
         width: 130px;
         overflow: hidden;
@@ -67,7 +81,7 @@ const CartItemStyled = styled.div `
         text-overflow: ellipsis;
     }
     & .cart-item-price {
-        color: ${theme.colors.primary_cake};
+        color: ${props => props.cardSelect ? theme.colors.white : theme.colors.primary_cake};
         font-family: 'Open Sans';
         font-size: ${theme.fonts.size.P1};
     }
@@ -75,7 +89,7 @@ const CartItemStyled = styled.div `
         display: flex;
         align-items: center;
         justify-content: end;
-        color: ${theme.colors.primary_cake};
+        color: ${props => props.cardSelect ? theme.colors.white : theme.colors.primary_cake};
         font-family: 'Open Sans';
         font-size: ${theme.fonts.size.P1};
     }
@@ -90,6 +104,10 @@ const CartItemStyled = styled.div `
         cursor: pointer;
         top: 100%;
         transition: all linear 0.2s;
+    }
+    &:hover {
+        box-shadow: ${props => props.active ? "0 0 12px 0 rgb(122 180 184 / 100%)" : ""};
+        transform: ${props => props.active ? "scale(1.05)" : ""};
     }
     &:hover .delete-item-button {
         top: 0%;

@@ -33,6 +33,7 @@ function Cart() {
                                         price={cake.price}
                                         quantity={item.quantity}
                                         removeItem={() => removeFromCart(item)}
+                                        id={item.id}
                                     />
                                 );
                             }
