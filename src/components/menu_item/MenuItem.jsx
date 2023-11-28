@@ -8,6 +8,7 @@ import { adminContext } from '../../store/Context';
 import { useContext } from 'react';
 import { itemContext } from '../../store/ItemContext';
 import { CartContext } from '../../store/CartContext';
+import IMAGES from '../../Images';
 
 function MenuItem(props) {
 
@@ -40,14 +41,14 @@ function MenuItem(props) {
 
     return (
         <>
-            <CardContainer active={selectUpdate && admin} onClick={admin ? () => handleSelect(id) : null} cardSelect={selectUpdate && admin && itemSelect === id}>
+            <CardContainer active={selectUpdate && admin} onClick={admin && selectUpdate ? () => handleSelect(id) : null} cardSelect={selectUpdate && admin && itemSelect === id}>
                 {deleteItem
                 ?
                     <div className="admin-delete-button"><TiDelete onClick={handleDelete} color={theme.colors.primary_cake} size={25}/></div>
                 :
                     ""
                 }
-                <img src={imageSource} alt="image de gateau" />
+                <img src={imageSource !== "" ? imageSource : IMAGES.menuItem} alt="image de gateau" />
                 <p className="item-title">{title}</p>
                 <div className="item-action-container">
                     <p>{formatPrice(price)}</p>
