@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { theme } from "../../theme/Theme";
 import PropTypes from 'prop-types';
 import { formatPrice } from '../../utils/maths';
@@ -50,6 +50,38 @@ CartItem.propTypes = {
 
 // STYLED COMPONENTS
 
+const bounce = keyframes`
+    0% {
+        transform: scale(1);
+        animation-timing-function: ease-in-out;
+    }
+
+    14% {
+        transform: scale(1.05);
+        animation-timing-function: ease-in-out;
+    }
+
+    28% {
+        transform: scale(1);
+        animation-timing-function: ease-in-out;
+    }
+
+    42% {
+        transform: scale(1.05);
+        animation-timing-function: ease-in-out;
+    }
+
+    70% {
+        transform: scale(1);
+        animation-timing-function: ease-in-out;
+    }
+
+    100% {
+        transform: scale(1);
+        animation-timing-function: ease-in-out;
+    }
+`
+
 const CartItemStyled = styled.div `
     background: ${props => props.cardSelect ? theme.colors.primary_cake : theme.colors.white};
     box-shadow: 0px 6px 11px 5px rgba(0,0,0,0.2);
@@ -63,6 +95,7 @@ const CartItemStyled = styled.div `
     overflow: hidden;
     cursor: ${props => props.active ? "pointer" : "default"};
     transition: all linear 0.3s;
+    animation: ${bounce} 1.3s ease 0s 1 normal both running;
     & img, .cart-item-description, .cart-item-quantity {
         width: 33%;
         display: flex;

@@ -55,4 +55,21 @@ const ProfileLogOut = styled.a `
     color: ${theme.colors.greyMedium};
     cursor: pointer;
     text-decoration: none;
+    position: relative;
+    &::before {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: ${theme.colors.primary_cake};
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        transform-origin: left;
+        transform: scale(0);
+        transition: all linear 0.3s;
+    }
+    &:hover::before {
+        transform: scale(1);
+    }
 `

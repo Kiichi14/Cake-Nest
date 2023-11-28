@@ -48,7 +48,6 @@ function Cart() {
 export default Cart;
 
 const CartStyled = styled.div `
-    /* width: 350px; */
     display: flex;
     flex-direction: column;
     height: 100%;

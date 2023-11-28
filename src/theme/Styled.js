@@ -130,6 +130,7 @@ const CardContainer = styled.div `
     height: fit-content;
     transition: all linear 0.3s;
     cursor: ${props => props.active ? "pointer" : "default"};
+    position: relative;
     &:hover {
         box-shadow: ${props => props.active ? "0 0 12px 0 rgb(122 180 184 / 100%)" : ""};
         transform: ${props => props.active ? "scale(1.05)" : ""};
@@ -192,7 +193,7 @@ const LayoutContainer = styled.div `
 
 const AddFormStyled = styled.form `
     width: 100%;
-    height: 30vh;
+    height: 250px;
     background: white;
     border-radius: 0px 0px ${theme.borderRadius.round} ${theme.borderRadius.round};
     padding: ${theme.spacing.md};

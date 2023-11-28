@@ -9,16 +9,18 @@ import { useContext } from 'react';
 import { itemContext } from '../../store/ItemContext';
 import { CartContext } from '../../store/CartContext';
 import IMAGES from '../../Images';
+import styled from 'styled-components';
+
 
 function MenuItem(props) {
 
-    const { title, price, id, addProduct, imageSource, deleteItem } = props;
+    const { title, price, id, addProduct, imageSource, deleteItem, quantity, isAvailable } = props;
     const { isUpdate, isSelect }= useContext(updateContext);
     const { cartItems, setCartItems } = useContext(CartContext);
     const [selectUpdate] = isUpdate;
     const [itemSelect, setItemSelect] = isSelect;
     const [admin] = useContext(adminContext);
-    const [cake, setCake] = useContext(itemContext)
+    const [cake, setCake] = useContext(itemContext);
 
     const handleSelect = (id) => {
         setItemSelect(id);
@@ -42,6 +44,14 @@ function MenuItem(props) {
     return (
         <>
             <CardContainer active={selectUpdate && admin} onClick={admin && selectUpdate ? () => handleSelect(id) : null} cardSelect={selectUpdate && admin && itemSelect === id}>
+                {!isAvailable 
+                ?
+                    <NoStockStyled>
+                        <p>EPUISÉ</p>
+                    </NoStockStyled>
+                :
+                    ""
+                }
                 {deleteItem
                 ?
                     <div className="admin-delete-button"><TiDelete onClick={handleDelete} color={theme.colors.primary_cake} size={25}/></div>
@@ -72,3 +82,20 @@ MenuItem.propTypes = {
     deleteItem: PropTypes.bool,
     deleteFunc: PropTypes.func
 };
+
+const NoStockStyled = styled.div`
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${theme.colors.red};
+    font-family: 'Open Sans';
+    font-size: ${theme.fonts.size.P4};
+    transform: rotate(310deg);
+`

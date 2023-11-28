@@ -24,7 +24,7 @@ const AdminPanel = () => {
     }
 
     return (
-        <AdminPanelStyled>
+        <AdminPanelStyled className={display ? 'active' : ''}>
             <div className="admin-panel-action">
                 <button onClick={handleDisplay} className={`display-admin-panel ${display ? "active" : ""}`}>
                     {display ? <FaChevronDown /> : <FaChevronUp color="white" />}
@@ -39,16 +39,14 @@ const AdminPanel = () => {
                     </button>
                 ))}
             </div>
-            {display && (
-                <div className="admin-panel-form">
-                    {addProduct
-                    ?
-                        <AddProductForm />
-                    :
-                        <UpdateProduct />
-                    }
-                </div>
-            )}
+            <div className="admin-panel-form">
+                {addProduct
+                ?
+                    <AddProductForm />
+                :
+                    <UpdateProduct />
+                }
+            </div>
         </AdminPanelStyled>
     );
 }
@@ -60,6 +58,11 @@ const AdminPanelStyled = styled.div`
     bottom: 0px;
     left: 0px;
     width: 100%;
+    transform: translateY(250px);
+    transition: all linear 0.3s;
+    &.active {
+        transform: translateY(0px);
+    }
     & .admin-panel-action {
         margin-left: 100px;
     }
