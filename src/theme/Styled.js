@@ -82,6 +82,31 @@ const MainDiv = styled.div `
         position: relative;
         width: 100%;
     }
+    & .main-cart-container {
+        position: relative;
+        transition: all linear 0.2s;
+        width: 450px;
+    }
+    & .main-cart-container.collapse {
+        position: relative;
+        width: 0px;
+    }
+    & .main-cart-container .btn-collapse-cart {
+        position: absolute;
+        width: 30px;
+        height: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -30px;
+        cursor: pointer;
+        background: ${theme.colors.background_dark};
+        border: none;
+        border-radius: 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound} 0px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `
 
 const MenuItemContainer = styled.div `

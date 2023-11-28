@@ -1,17 +1,26 @@
 import { HiCursorClick } from "react-icons/hi";
 import { updateContext } from "../../store/UpdateContext";
 import { itemContext } from "../../store/ItemContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { GiCupcake } from "react-icons/gi";
 import { FaCamera } from "react-icons/fa";
 import { FaEuroSign } from "react-icons/fa";
 import { AddFormStyled } from "../../theme/Styled";
+import IMAGES from "../../Images";
 
 function UpdateProduct() {
 
     const { isSelect } = useContext(updateContext);
     const [itemSelect] = isSelect;
     const [cake, setCake] = useContext(itemContext);
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (itemSelect) {
+          inputRef.current.focus();
+        }
+      }, [itemSelect]);
 
     const [selectTitle, setSelectTitle] = useState("");
     const [selectImg, setSelectImg] = useState("");
@@ -48,12 +57,12 @@ function UpdateProduct() {
                 ?
                     <>
                     <div className="image-preview-container">
-                        <img src={selectImg} alt="image de gateau" />
+                        <img src={selectImg !== "" ? selectImg : IMAGES.menuItem} alt="image de gateau" />
                     </div>
                     <div className="add-product-form">
                         <div className="form-group">
                             <GiCupcake />
-                            <input type="text" name="title" value={selectTitle} onChange={handleChange}/>
+                            <input type="text" name="title" value={selectTitle} onChange={handleChange} ref={inputRef}/>
                         </div>
                         <div className="form-group">
                             <FaCamera />
