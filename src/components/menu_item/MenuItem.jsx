@@ -14,7 +14,7 @@ import styled from 'styled-components';
 
 function MenuItem(props) {
 
-    const { title, price, id, addProduct, imageSource, deleteItem, quantity, isAvailable } = props;
+    const { title, price, id, addProduct, imageSource, deleteItem, isAvailable } = props;
     const { isUpdate, isSelect }= useContext(updateContext);
     const { cartItems, setCartItems } = useContext(CartContext);
     const [selectUpdate] = isUpdate;
@@ -43,7 +43,7 @@ function MenuItem(props) {
 
     return (
         <>
-            <CardContainer active={selectUpdate && admin} onClick={admin && selectUpdate ? () => handleSelect(id) : null} cardSelect={selectUpdate && admin && itemSelect === id}>
+            <CardContainer instock={isAvailable} active={selectUpdate && admin} onClick={admin && selectUpdate ? () => handleSelect(id) : null} cardSelect={selectUpdate && admin && itemSelect === id}>
                 {!isAvailable 
                 ?
                     <NoStockStyled>
@@ -80,7 +80,8 @@ MenuItem.propTypes = {
     addProduct: PropTypes.func,
     imageSource: PropTypes.string,
     deleteItem: PropTypes.bool,
-    deleteFunc: PropTypes.func
+    deleteFunc: PropTypes.func,
+    isAvailable: PropTypes.bool
 };
 
 const NoStockStyled = styled.div`

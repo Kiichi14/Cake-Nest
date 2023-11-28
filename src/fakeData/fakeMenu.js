@@ -35,7 +35,7 @@ const fakeMenu2 = [
     title: "MintCharm",
     price: 5.4985,
     quantity: 0,
-    isAvailable: true,
+    isAvailable: false,
     isAdvertised: false,
   },
   {

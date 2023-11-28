@@ -123,6 +123,7 @@ const MenuItemContainer = styled.div `
 
 const CardContainer = styled.div `
     background: ${props => props.cardSelect ? theme.colors.primary_cake : theme.colors.white};
+    opacity: ${props => props.instock ? '1' : '0.2'};
     padding: ${theme.spacing.md};
     width: 230px;
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
