@@ -1,22 +1,12 @@
 import styled from 'styled-components';
 import { theme } from '../../theme/Theme';
 import { FaRegUserCircle } from "react-icons/fa";
-// import { useLocation, useNavigate } from "react-router-dom";
-// import { useEffect } from "react";
 import { userContext } from '../../store/UserContext';
 import { useContext } from 'react';
 
 function ProfileWidget() {
 
-    // const navigate = useNavigate();
-    // const location = useLocation();
     const [user] = useContext(userContext);
-
-    // useEffect(() => {
-    //     if(location.state.name === "") {
-    //         navigate('/');
-    //     }    
-    // }, [location.state, navigate]);
 
     return (
         <ProfileDiv>
