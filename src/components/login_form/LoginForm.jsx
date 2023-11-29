@@ -5,6 +5,7 @@ import { theme } from "../../theme/Theme";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { SubTitleH3 } from "../../theme/Styled";
+import { createUser } from "../../api/user";
 
 function LoginForm() {
 
@@ -18,6 +19,7 @@ function LoginForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        createUser(firstName);
         firstName === "" 
         ? 
         alert("Un prénom est obligatoire") 

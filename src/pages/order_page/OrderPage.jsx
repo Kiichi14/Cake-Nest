@@ -10,6 +10,7 @@ import Cart from "../../components/cart/Cart";
 import { CartContext } from "../../store/CartContext";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
+import { getUser } from "../../api/user";
 
 function OrderPage() {
 
@@ -25,6 +26,9 @@ function OrderPage() {
     const handleCollapse = () => {
         setIsVisible(!isVisible);
     }
+
+    // appel api get de un user
+    getUser("oujc8UJkBlwUQ0pQ1e4T");
 
     return (
         <>
