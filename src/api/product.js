@@ -1,4 +1,4 @@
-import { doc, updateDoc, getDoc, arrayRemove } from 'firebase/firestore';
+import { doc, updateDoc, getDoc, arrayRemove, arrayUnion } from 'firebase/firestore';
 import { db } from './firebase-config';
 
 export const deleteProduct = async (idUser, idProduct) => {
@@ -17,4 +17,11 @@ export const deleteProduct = async (idUser, idProduct) => {
     } else {
         console.error("Document utilisateur non trouvé.");
     }
+}
+
+export const addProduct = async (idUser, item) => {
+    const docRef = doc(db, "users", idUser);
+    await updateDoc(docRef, {
+        menu: arrayUnion(item)
+    });
 }

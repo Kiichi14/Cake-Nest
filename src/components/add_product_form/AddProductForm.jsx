@@ -5,6 +5,8 @@ import { itemContext } from "../../store/ItemContext";
 import { useContext, useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { AddFormStyled } from "../../theme/Styled";
+import { addProduct } from "../../api/product";
+import { userContext } from "../../store/UserContext";
 
 function AddProductForm() {
 
@@ -13,6 +15,7 @@ function AddProductForm() {
     const [imageSource, setImageSource] = useState("");
     const [price, setPrice] = useState(0);
     const [success, setSuccess] = useState(false);
+    const [user] = useContext(userContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -22,6 +25,7 @@ function AddProductForm() {
         const newImageSource = imageSource;
         const newPrice = price;
         cakeCopy.push({id: id, title: newTitle, imageSource: newImageSource, price: newPrice});
+        addProduct(user, {id: id, title: newTitle, imageSource: newImageSource, price: newPrice});
         setCake(cakeCopy);
         setSuccess(!success);
         setTimeout(() => {

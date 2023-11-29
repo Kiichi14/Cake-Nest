@@ -1,12 +1,18 @@
-import { createContext, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { createContext, useContext, useState } from 'react';
 import { formatPrice } from '../utils/maths';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import { userContext } from './UserContext';
 
 export const CartContext = createContext();
 
+
 export const CartProvider = ({ children }) => {
 
-    const [cartItems, setCartItems] = useState([]);
+    const [user] = useContext(userContext);
+
+    const [cartItems, setCartItems] = useState(localStorage.getItem(`cartItems_${user}`) ? JSON.parse(localStorage.getItem(`cartItems_${user}`)) : []);
 
     const addToCart = (item) => {
         const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -55,6 +61,17 @@ export const CartProvider = ({ children }) => {
           );
         }
       };
+
+      useEffect(() => {
+        localStorage.setItem(`cartItems_${user}`, JSON.stringify(cartItems));
+      }, [cartItems]);
+
+      useEffect(() => {
+        const cartSave = localStorage.getItem(`cartItems_${user}`);
+        if (cartSave) {
+        setCartItems(JSON.parse(cartSave));
+        }
+      }, [user]);
 
     return (
         <CartContext.Provider
