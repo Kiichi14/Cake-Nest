@@ -28,7 +28,7 @@ export const CartProvider = ({ children }) => {
         const total = cartItems.reduce((acc, item) => {
             const foundItem = itemContext.find(contextItem => contextItem.id === item.id);
     
-            if (foundItem && !isNaN(foundItem.price)) {
+            if (foundItem && !isNaN(foundItem.price) && foundItem.isAvailable) {
                 const itemPrice = foundItem.price;
                 return acc + itemPrice * item.quantity;
             } else {

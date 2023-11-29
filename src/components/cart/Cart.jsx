@@ -34,6 +34,7 @@ function Cart() {
                                         quantity={item.quantity}
                                         removeItem={() => removeFromCart(item)}
                                         id={item.id}
+                                        isInStock={cake.isAvailable}
                                     />
                                 );
                             }

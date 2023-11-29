@@ -43,7 +43,7 @@ function MenuItem(props) {
 
     return (
         <>
-            <CardContainer instock={isAvailable} active={selectUpdate && admin} onClick={admin && selectUpdate ? () => handleSelect(id) : null} cardSelect={selectUpdate && admin && itemSelect === id}>
+            <SectionCardContainer>
                 {!isAvailable 
                 ?
                     <NoStockStyled>
@@ -52,19 +52,21 @@ function MenuItem(props) {
                 :
                     ""
                 }
-                {deleteItem
-                ?
-                    <div className="admin-delete-button"><TiDelete onClick={handleDelete} color={theme.colors.primary_cake} size={25}/></div>
-                :
-                    ""
-                }
-                <img src={imageSource !== "" ? imageSource : IMAGES.menuItem} alt="image de gateau" />
-                <p className="item-title">{title}</p>
-                <div className="item-action-container">
-                    <p>{formatPrice(price)}</p>
-                    <button onClick={handleAdd}>Ajouter</button>
-                </div>
-            </CardContainer>
+                <CardContainer instock={isAvailable} active={selectUpdate && admin} onClick={admin && selectUpdate ? () => handleSelect(id) : null} cardSelect={selectUpdate && admin && itemSelect === id}>
+                    {deleteItem
+                    ?
+                        <div className="admin-delete-button"><TiDelete onClick={handleDelete} color={theme.colors.primary_cake} size={25}/></div>
+                    :
+                        ""
+                    }
+                    <img src={imageSource !== "" ? imageSource : IMAGES.menuItem} alt="image de gateau" />
+                    <p className="item-title">{title}</p>
+                    <div className="item-action-container">
+                        <p>{formatPrice(price)}</p>
+                        <button onClick={handleAdd}>Ajouter</button>
+                    </div>
+                </CardContainer>
+            </SectionCardContainer>
         </>
     )
 }
@@ -84,6 +86,10 @@ MenuItem.propTypes = {
     isAvailable: PropTypes.bool
 };
 
+const SectionCardContainer = styled.div `
+    position: relative;
+`
+
 const NoStockStyled = styled.div`
     position: absolute;
     height: 100%;
@@ -99,4 +105,5 @@ const NoStockStyled = styled.div`
     font-family: 'Open Sans';
     font-size: ${theme.fonts.size.P4};
     transform: rotate(310deg);
+    z-index: 1;
 `

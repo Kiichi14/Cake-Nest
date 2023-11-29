@@ -10,7 +10,7 @@ import { useContext } from "react";
 
 function CartItem(props) {
 
-    const { image, title, price, quantity, removeItem, id } = props;
+    const { image, title, price, quantity, removeItem, id, isInStock } = props;
     const { isUpdate, isSelect }= useContext(updateContext);
     const [selectUpdate] = isUpdate;
     const [itemSelect, setItemSelect] = isSelect;
@@ -26,7 +26,12 @@ function CartItem(props) {
                 <img src={image !== "" ? image : IMAGES.menuItem} alt="image de gateau" />
                 <div className="cart-item-description">
                     <p className="cart-item-title">{title}</p>
-                    <p className="cart-item-price">{formatPrice(price)}</p>
+                    {isInStock 
+                    ?
+                        <p className="cart-item-price">{formatPrice(price)}</p>
+                    :
+                        <p className="cart-item-price">Non disponible</p>
+                    }
                 </div>
                  <p className="cart-item-quantity">x {quantity}</p>
                  <button className="delete-item-button" onClick={removeItem}><MdDeleteForever size={25} color="white"/></button>
@@ -45,7 +50,8 @@ CartItem.propTypes = {
     price: PropTypes.number,
     quantity: PropTypes.number,
     removeItem: PropTypes.func,
-    id: PropTypes.number
+    id: PropTypes.number,
+    isInStock: PropTypes.string,
 };
 
 // STYLED COMPONENTS

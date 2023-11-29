@@ -7,6 +7,7 @@ import { FaCamera } from "react-icons/fa";
 import { FaEuroSign } from "react-icons/fa";
 import { AddFormStyled } from "../../theme/Styled";
 import IMAGES from "../../Images";
+import { FiPackage } from "react-icons/fi";
 
 function UpdateProduct() {
 
@@ -25,6 +26,7 @@ function UpdateProduct() {
     const [selectTitle, setSelectTitle] = useState("");
     const [selectImg, setSelectImg] = useState("");
     const [selectPrice, setSelectPrice] = useState(0);
+    const [inStock, setInStock] = useState(false);
 
     useEffect(() => {
         if(itemSelect) {
@@ -32,6 +34,7 @@ function UpdateProduct() {
             setSelectTitle(selectCake[0].title);
             setSelectImg(selectCake[0].imageSource);
             setSelectPrice(selectCake[0].price);
+            setInStock(selectCake[0].isAvailable);
         }
     }, [cake, itemSelect]);
 
@@ -47,6 +50,13 @@ function UpdateProduct() {
         if(event.target.name === "imageSource") {
             cakeToUpdate.imageSource = event.target.value;
         }
+        setCake(updatedCakes);
+    }
+
+    const handleStock = () => {
+        const updatedCakes = [...cake];
+        const outOfStock = updatedCakes.find(item => item.id === itemSelect); 
+        outOfStock.isAvailable = !outOfStock.isAvailable;
         setCake(updatedCakes);
     }
 
@@ -68,9 +78,15 @@ function UpdateProduct() {
                             <FaCamera />
                             <input type="text" name="imageSource" value={selectImg} onChange={handleChange}/>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group form-group-stock">
                             <FaEuroSign />
                             <input type="number" step="0.01" name="price" value={selectPrice} onChange={handleChange}/>
+                                {inStock
+                                ?
+                                    <div className="stock-validator" onClick={handleStock}><FiPackage /> <p>En rupture</p></div>
+                                :
+                                    <div className="stock-validator" onClick={handleStock}><FiPackage /> <p>En stock</p></div>
+                                }
                         </div>
                     </div>
                     </>

@@ -131,7 +131,6 @@ const CardContainer = styled.div `
     height: fit-content;
     transition: all linear 0.3s;
     cursor: ${props => props.active ? "pointer" : "default"};
-    position: relative;
     &:hover {
         box-shadow: ${props => props.active ? "0 0 12px 0 rgb(122 180 184 / 100%)" : ""};
         transform: ${props => props.active ? "scale(1.05)" : ""};
@@ -267,6 +266,24 @@ const AddFormStyled = styled.form `
         font-size: ${theme.fonts.size.P3};
         padding: ${theme.spacing.xl};
         color: ${theme.colors.greySemiDark};
+    }
+    & .stock-validator svg {
+        position: inherit;
+        transform: none;
+    }
+    & .stock-validator {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: ${theme.spacing.sm};
+        background: ${theme.colors.greyLight};
+        padding: ${theme.spacing.sm} ${theme.spacing.sm};
+        border-radius: ${theme.borderRadius.round};
+    }
+    & .form-group-stock {
+        display: flex;
+        align-items: center;
+        gap: ${theme.spacing.md};
     }
 `
 
