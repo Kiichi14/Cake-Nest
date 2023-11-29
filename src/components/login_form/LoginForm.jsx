@@ -5,11 +5,16 @@ import { theme } from "../../theme/Theme";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { SubTitleH3 } from "../../theme/Styled";
-import { createUser } from "../../api/user";
+import { getUser, createUser } from "../../api/user";
+import { userContext } from "../../store/UserContext";
+import { itemContext } from "../../store/ItemContext";
+import { useContext } from "react";
 
 function LoginForm() {
 
     const [firstName, setFirstName] = useState("");
+    const [, setUser] = useContext(userContext);
+    const [, setCake] = useContext(itemContext);
 
     const navigate = useNavigate();
 
@@ -19,13 +24,35 @@ function LoginForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        createUser(firstName);
+        // appel api get de un user
+        getUser(firstName)
+        .then((user) => {
+            if(user) {
+                setUser(user.username);
+                setCake(user.menu);
+            } else {
+                create(firstName);
+            }
+            navigate("/order", {state:{name:firstName}});
+        })
+        .catch((error) => {
+            console.error("Erreur lors de la récupération de l'utilisateur:", error);
+        });
         firstName === "" 
         ? 
         alert("Un prénom est obligatoire") 
         : 
         setFirstName("");
-        navigate("/order", {state:{name:firstName}});
+    }
+
+    async function create(user) {
+        try {
+            const userData = await createUser(user);
+            setUser(userData.username);
+            setCake(userData.menu);
+        } catch (error) {
+            console.error("Error:", error);
+        }
     }
 
     return (

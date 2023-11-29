@@ -7,16 +7,21 @@ export const getUser = async (idUser) => {
     const docSnapshot = await getDoc(docRef);
     if(docSnapshot.exists()) {
         const userReceived = docSnapshot.data();
-        console.log(userReceived);
         return userReceived;
     }
 }
 
-export const createUser = (userId) => {
+export const createUser = async (userId) => {
     const docRef = doc(db, "users", userId);
     const data = {
         username: userId,
         menu: fakeMenu2
     }
-    setDoc(docRef, data);
+    try {
+        await setDoc(docRef, data);
+        return data;
+    } catch (error) {
+        console.error("Error creating user:", error);
+        throw error;
+    }
 }
