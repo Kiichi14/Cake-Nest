@@ -3,8 +3,15 @@ import IMAGES from "../../Images";
 import styled from 'styled-components';
 import { theme } from "../../theme/Theme";
 import { Title, SubTitleH2, TitleImg } from "../../theme/Styled";
+import { useState } from "react";
 
 function LoginPage() {
+
+    const [isSignUpActive, setIsSignUpActive] = useState(false);
+
+    const handleSignUpActive = () => {
+        setIsSignUpActive(!isSignUpActive);
+    }
 
     return (
         <>
@@ -13,7 +20,10 @@ function LoginPage() {
                     <Title>Cake<TitleImg src={IMAGES.logo} alt="logo Cake Nest"></TitleImg>Nest</Title>
                     <SubTitleH2>Bienvenue chez nous !</SubTitleH2>
                 </LoginContainerElement>
-                <LoginForm />
+                {isSignUpActive ? "S'inscrire" : <LoginForm />}
+                <div className="sign-in-up-switch">
+                    <button onClick={handleSignUpActive}>{isSignUpActive ? "Deja enregistré" : "s'inscire"}</button>
+                </div>
             </LoginContainer>
         </>
     )
@@ -41,6 +51,36 @@ const LoginContainer = styled.div `
         bottom: 0;
         right: 0;
         background: rgba(0, 0, 0, 0.5);
+    }
+    & .sign-in-up-switch {
+        padding: ${theme.spacing.xl} 0px;
+        z-index: 1;
+    }
+    & .sign-in-up-switch button {
+        color: ${theme.colors.white};
+        font-family: 'Pacifico';
+        background: none;
+        border: none;
+        font-size: ${theme.fonts.size.P3};
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+            content: "";
+            width: 100%;
+            height: 2px;
+            background: ${theme.colors.white};
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: all linear 0.2s;
+        }
+        &:hover::before {
+            transform: scaleX(1);
+        }
     }
 `
 
