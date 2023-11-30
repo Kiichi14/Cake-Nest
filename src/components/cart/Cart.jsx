@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from "styled-components";
 import { theme } from "../../theme/Theme";
 import { useContext } from 'react';
 import { CartContext } from "../../store/CartContext";
 import CartItem from "../cart_item/CartItem";
 import { itemContext } from "../../store/ItemContext";
+
 
 function Cart() {
 

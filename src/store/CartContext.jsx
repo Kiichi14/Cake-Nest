@@ -70,6 +70,9 @@ export const CartProvider = ({ children }) => {
         const cartSave = localStorage.getItem(`cartItems_${user}`);
         if (cartSave) {
         setCartItems(JSON.parse(cartSave));
+        } else {
+          setCartItems([]);
+          localStorage.setItem(`cartItems_${user}`, JSON.stringify(cartItems));
         }
       }, [user]);
 
