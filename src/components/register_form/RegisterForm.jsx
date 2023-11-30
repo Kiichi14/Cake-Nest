@@ -19,6 +19,8 @@ function RegisterForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const [emailInUse, setEmailInUse] = useState(false);
+    const [passwordShort, setPasswordShort] = useState(false);
     const [, setUser] = useContext(userContext);
     const [, setCake] = useContext(itemContext);
 
@@ -45,8 +47,9 @@ function RegisterForm() {
         })
         .catch((error) => {
             const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
+            errorCode === "auth/email-already-in-use" ? setEmailInUse(true) : false;
+            errorCode === "auth/weak-password" ? setPasswordShort(true) : false;
+            errorCode ? alert('Une erreur est survenue') : "";
         });
     }
 
@@ -67,17 +70,19 @@ function RegisterForm() {
                 <SubTitleH3>Enregistrez-vous</SubTitleH3>
                 <form action="submit" onSubmit={handleSubmit}>
                     <FormLogin>
+                        {emailInUse ? <p className="error-message">Cette email est deja pris</p> : ""}
                         <InputContainer>
                             <MdOutlineEmail className="svg-input"/>
-                            <FormInput type="email" name="email" placeholder="Email" value={email} onChange={handleChange}></FormInput>
+                            <FormInput type="email" name="email" placeholder="Email" value={email} onChange={handleChange} required></FormInput>
                         </InputContainer>
                         <InputContainer>
                             <FaRegUserCircle className="svg-input"/>
-                            <FormInput type="text" name="username" placeholder="Nom d'utilisateur" value={username} onChange={handleChange}></FormInput>
+                            <FormInput type="text" name="username" placeholder="Nom d'utilisateur" value={username} onChange={handleChange} required></FormInput>
                         </InputContainer>
+                        {passwordShort ? <p className="error-message">Mot de passe de 6 caractére minimum</p> : ""}
                         <InputContainer>
                             <RiLockPasswordLine className="svg-input"/>
-                            <FormInput type="password" name="password" placeholder="Mot de passe" value={password} onChange={handleChange}></FormInput>
+                            <FormInput type="password" name="password" placeholder="Mot de passe" value={password} onChange={handleChange} required></FormInput>
                         </InputContainer>
                         <FormButton type="submit">Mon espace <IoIosArrowForward /></FormButton>
                     </FormLogin>
@@ -92,6 +97,14 @@ export default RegisterForm;
 const LoginFormContainer = styled.div `
     width: 500px;
     z-index: 1;
+    & .error-message {
+        background: ${theme.colors.red};
+        width: 100%;
+        padding: ${theme.spacing.sm};
+        color: ${theme.colors.white};
+        font-family: 'Open Sans';
+        border-radius: ${theme.borderRadius.round};
+    }
 `
 
 const InputContainer = styled.div `
