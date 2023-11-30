@@ -25,3 +25,10 @@ export const addProduct = async (idUser, item) => {
         menu: arrayUnion(item)
     });
 }
+
+export const refillProduct = async (idUser, menu) => {
+    const docRef = doc(db, "users", idUser);
+    await updateDoc(docRef, {
+        menu: arrayUnion(...menu)
+    })
+}
