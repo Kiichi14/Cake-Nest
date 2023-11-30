@@ -18,6 +18,7 @@ function OrderPage() {
     const { addToCart } = useContext(CartContext);
     const [isVisible, setIsVisible] = useState(true);
 
+
     const handleSubmit = (item) => {
        addToCart(item);
     };

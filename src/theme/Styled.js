@@ -44,7 +44,7 @@ const MainDiv = styled.div `
     -webkit-box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.2); 
     box-shadow: inset 0px 6px 11px 5px rgba(0,0,0,0.2);
     border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
-    overflow-y: hidden;
+    overflow: hidden;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
     &.no-product-container {
@@ -189,6 +189,8 @@ const LayoutContainer = styled.div `
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
 `
 
 const AddFormStyled = styled.form `

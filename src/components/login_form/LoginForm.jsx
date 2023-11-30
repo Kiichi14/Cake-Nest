@@ -10,7 +10,7 @@ import { getUser } from "../../api/user";
 import { userContext } from "../../store/UserContext";
 import { itemContext } from "../../store/ItemContext";
 import { useContext } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
 import { auth } from "../../api/firebase-config";
 
 function LoginForm() {
@@ -31,17 +31,19 @@ function LoginForm() {
         }
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        try {
+            await setPersistence(auth, browserSessionPersistence);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             connectUser(user.uid);
-        })
-        .catch((error) => {
+          } catch (error) {
             const errorCode = error.code;
-            errorCode ? alert('identifiant incorrect') : "";
-        })
+            if (errorCode) {
+              alert('Identifiant incorrect');
+            }
+          }
     }
 
     async function connectUser(user) {

@@ -2,20 +2,29 @@ import styled from 'styled-components';
 import { theme } from '../../theme/Theme';
 import { FaRegUserCircle } from "react-icons/fa";
 import { userContext } from '../../store/UserContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import ProfileManage from '../profile_manage/ProfilManage';
 
 function ProfileWidget() {
 
     const [user] = useContext(userContext);
+    const [displayManage, setDisplayManage] = useState(false);
+
+    const handleManage = () => {
+        setDisplayManage(!displayManage);
+    }
 
     return (
-        <ProfileDiv>
-            <ProfileDetail>
-                <ProfileText>Salut <span>{user}</span></ProfileText>
-                <ProfileLogOut href="/">Se déconnecter</ProfileLogOut>
-            </ProfileDetail>
-            <FaRegUserCircle size={50} />
-        </ProfileDiv>
+        <>
+            <ProfileDiv>
+                <ProfileDetail>
+                    <ProfileText>Salut <span>{user}</span></ProfileText>
+                    <ProfileLogOut href="/">Se déconnecter</ProfileLogOut>
+                </ProfileDetail>
+                <FaRegUserCircle size={50} onClick={handleManage} cursor="pointer"/>
+            </ProfileDiv>
+            <ProfileManage active={displayManage} control={handleManage}/>
+        </>
     )
 }
 

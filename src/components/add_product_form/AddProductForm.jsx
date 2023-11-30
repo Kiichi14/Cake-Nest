@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { AddFormStyled } from "../../theme/Styled";
 import { addProduct } from "../../api/product";
-import { userContext } from "../../store/UserContext";
+import { auth } from "../../api/firebase-config";
 
 function AddProductForm() {
 
@@ -15,7 +15,6 @@ function AddProductForm() {
     const [imageSource, setImageSource] = useState("");
     const [price, setPrice] = useState(0);
     const [success, setSuccess] = useState(false);
-    const [user] = useContext(userContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -25,7 +24,7 @@ function AddProductForm() {
         const newImageSource = imageSource;
         const newPrice = price;
         cakeCopy.push({id: id, title: newTitle, imageSource: newImageSource, price: newPrice});
-        addProduct(user, {id: id, title: newTitle, imageSource: newImageSource, price: newPrice, isAvalaible: true});
+        addProduct(auth.currentUser.uid, {id: id, title: newTitle, imageSource: newImageSource, price: newPrice, isAvailable: true});
         setCake(cakeCopy);
         setSuccess(!success);
         setTimeout(() => {

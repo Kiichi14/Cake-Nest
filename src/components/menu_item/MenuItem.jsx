@@ -10,8 +10,8 @@ import { itemContext } from '../../store/ItemContext';
 import { CartContext } from '../../store/CartContext';
 import IMAGES from '../../Images';
 import styled from 'styled-components';
-import { userContext } from '../../store/UserContext';
 import { deleteProduct } from '../../api/product';
+import { auth } from '../../api/firebase-config';
 
 
 function MenuItem(props) {
@@ -23,7 +23,6 @@ function MenuItem(props) {
     const [itemSelect, setItemSelect] = isSelect;
     const [admin] = useContext(adminContext);
     const [cake, setCake] = useContext(itemContext);
-    const [user] = useContext(userContext);
 
     const handleSelect = (id) => {
         setItemSelect(id);
@@ -40,7 +39,7 @@ function MenuItem(props) {
         const cartCopy = [...cartItems];
         const newCartList = cartCopy.filter(item => item.id !== id);
         const newCakeList = cakeCopy.filter(item => item.id !== id);
-        deleteProduct(user, id);
+        deleteProduct(auth.currentUser.uid, id);
         setCake(newCakeList);
         setCartItems(newCartList);
     }
