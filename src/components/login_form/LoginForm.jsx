@@ -36,8 +36,7 @@ function LoginForm() {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user);
-            // connectUser(user.email);
+            connectUser(user.uid);
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -46,16 +45,16 @@ function LoginForm() {
         })
     }
 
-    // async function connectUser(user) {
-    //     try {
-    //         const userData = await getUser(user);
-    //         setUser(userData.username);
-    //         setCake(userData.menu);
-    //         navigate('/order');
-    //     } catch (error) {
-    //         console.error("Error:", error);
-    //     }
-    // }
+    async function connectUser(user) {
+        try {
+            const userData = await getUser(user);
+            setUser(userData.username);
+            setCake(userData.menu);
+            navigate('/order');
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
 
     return (
         <>

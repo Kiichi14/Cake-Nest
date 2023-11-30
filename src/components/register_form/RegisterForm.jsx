@@ -41,7 +41,7 @@ function RegisterForm() {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            create(user.email, username);
+            create(user.uid, username);
         })
         .catch((error) => {
             const errorCode = error.code;
