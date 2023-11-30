@@ -4,56 +4,58 @@ import styled from 'styled-components';
 import { theme } from "../../theme/Theme";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { SubTitleH3 } from "../../theme/Styled";
-import { getUser, createUser } from "../../api/user";
+import { getUser } from "../../api/user";
 import { userContext } from "../../store/UserContext";
 import { itemContext } from "../../store/ItemContext";
 import { useContext } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../api/firebase-config";
 
 function LoginForm() {
 
-    const [firstName, setFirstName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [, setUser] = useContext(userContext);
     const [, setCake] = useContext(itemContext);
 
     const navigate = useNavigate();
 
     const handleChange = (event) => {
-        setFirstName(event.target.value);
+        if(event.target.name === "email") {
+            setEmail(event.target.value);
+        }
+        if(event.target.name === "password") {
+            setPassword(event.target.value);
+        }
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // appel api get de un user
-        getUser(firstName)
-        .then((user) => {
-            if(user) {
-                setUser(user.username);
-                setCake(user.menu);
-            } else {
-                create(firstName);
-            }
-            navigate("/order", {state:{name:firstName}});
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+            // connectUser(user.email);
         })
         .catch((error) => {
-            console.error("Erreur lors de la récupération de l'utilisateur:", error);
-        });
-        firstName === "" 
-        ? 
-        alert("Un prénom est obligatoire") 
-        : 
-        setFirstName("");
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+        })
     }
 
-    async function create(user) {
-        try {
-            const userData = await createUser(user);
-            setUser(userData.username);
-            setCake(userData.menu);
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    }
+    // async function connectUser(user) {
+    //     try {
+    //         const userData = await getUser(user);
+    //         setUser(userData.username);
+    //         setCake(userData.menu);
+    //         navigate('/order');
+    //     } catch (error) {
+    //         console.error("Error:", error);
+    //     }
+    // }
 
     return (
         <>
@@ -63,7 +65,11 @@ function LoginForm() {
                     <FormLogin>
                         <InputContainer>
                             <FaRegUserCircle className="svg-input"/>
-                            <FormInput type="text" name="firstname" placeholder="Entrez votre prénom" value={firstName} onChange={handleChange}></FormInput>
+                            <FormInput type="email" name="email" placeholder="Email" value={email} onChange={handleChange}></FormInput>
+                        </InputContainer>
+                        <InputContainer>
+                            <RiLockPasswordLine className="svg-input"/>
+                            <FormInput type="password" name="password" placeholder="Mot de Passe" value={password} onChange={handleChange}></FormInput>
                         </InputContainer>
                         <FormButton type="submit">Mon espace <IoIosArrowForward /></FormButton>
                     </FormLogin>
