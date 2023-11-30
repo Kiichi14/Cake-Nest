@@ -1,4 +1,5 @@
 import LoginForm from "../../components/login_form/LoginForm";
+import RegisterForm from "../../components/register_form/RegisterForm";
 import IMAGES from "../../Images";
 import styled from 'styled-components';
 import { theme } from "../../theme/Theme";
@@ -20,7 +21,7 @@ function LoginPage() {
                     <Title>Cake<TitleImg src={IMAGES.logo} alt="logo Cake Nest"></TitleImg>Nest</Title>
                     <SubTitleH2>Bienvenue chez nous !</SubTitleH2>
                 </LoginContainerElement>
-                {isSignUpActive ? "S'inscrire" : <LoginForm />}
+                {isSignUpActive ? <RegisterForm /> : <LoginForm />}
                 <div className="sign-in-up-switch">
                     <button onClick={handleSignUpActive}>{isSignUpActive ? "Deja enregistré" : "s'inscire"}</button>
                 </div>

@@ -11,10 +11,10 @@ export const getUser = async (idUser) => {
     }
 }
 
-export const createUser = async (userId) => {
+export const createUser = async (userId, username) => {
     const docRef = doc(db, "users", userId);
     const data = {
-        username: userId,
+        username: username,
         menu: fakeMenu2
     }
     try {
