@@ -86,6 +86,6 @@ const EditProfileFormStyled = styled.form `
         background: ${theme.colors.success};
     }
     .errorMessage {
-        background: ${theme.colors.success};
+        background: ${theme.colors.red};
     }
 `

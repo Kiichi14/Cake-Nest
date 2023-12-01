@@ -55,6 +55,9 @@ function ProfileManage(props) {
             }, 3000)
         }).catch(() => {
             setErrorPassword(true);
+            setTimeout(() => {
+                setSuccessPassword(false);
+            }, 5000)
         });
     }
 
