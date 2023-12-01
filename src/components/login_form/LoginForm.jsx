@@ -17,7 +17,7 @@ function LoginForm() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [, setUser] = useContext(userContext);
+    const { setUser } = useContext(userContext);
     const [, setCake] = useContext(itemContext);
 
     const navigate = useNavigate();

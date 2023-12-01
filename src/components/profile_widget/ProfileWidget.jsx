@@ -7,7 +7,7 @@ import ProfileManage from '../profile_manage/ProfilManage';
 
 function ProfileWidget() {
 
-    const [user] = useContext(userContext);
+    const {user} = useContext(userContext);
     const [displayManage, setDisplayManage] = useState(false);
 
     const handleManage = () => {

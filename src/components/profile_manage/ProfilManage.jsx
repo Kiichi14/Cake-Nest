@@ -14,6 +14,9 @@ function ProfileManage(props) {
     const { active, control } = props;
     const [emailAuth, setEmailAuth] = useState("");
     const [newPassword, setNewPassword] = useState("");
+    const [successPassword, setSuccessPassword] = useState(false);
+    const [errorPassword, setErrorPassword] = useState(false);
+    const [errorEmail, setErrorEmail] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -41,6 +44,7 @@ function ProfileManage(props) {
             navigate('/');
         } catch (error) {
             console.log(error);
+            setErrorEmail(true);
         }
     }
 
@@ -48,8 +52,12 @@ function ProfileManage(props) {
         event.preventDefault();
         updatePassword(auth.currentUser, newPassword).then(() => {
             console.log('updated');
-        }).catch((error) => {
-            console.log(error);
+            setSuccessPassword(true);
+            setTimeout(() => {
+                setSuccessPassword(false);
+            }, 3000)
+        }).catch(() => {
+            setErrorPassword(true);
         });
     }
 
@@ -69,6 +77,7 @@ function ProfileManage(props) {
                             <MdOutlineEmail className="svg-input"/>
                             <input type="email" name="email" value={emailAuth} onChange={handleChange}/>
                         </div>
+                        {errorEmail ? <p className="errorMessage">Une erreur est apparue réessayer plus tard</p> : "" }
                         <button type="submit">Enregistrer</button>
                     </form>
                     <form className="password-manager" action="submit" onSubmit={handleSubmitPassword}>
@@ -77,6 +86,8 @@ function ProfileManage(props) {
                             <RiLockPasswordLine className="svg-input"/>
                             <input type="password" name="password" value={newPassword} onChange={handleChange}/>
                         </div>
+                        {successPassword ? <p className="succesMessage">Mot de passe mis a jour</p> : "" }
+                        {errorPassword ? <p className="errorMessage">Une erreur est apparue réessayer plus tard</p> : "" }
                         <button type="submit">Enregistrer</button>
                     </form>
                 </div>
@@ -170,6 +181,19 @@ const ProfilManageStyled = styled.div `
                 width: 50%;
                 border-radius: ${theme.borderRadius.extraRound};
                 border: none;
+            }
+            .succesMessage, .errorMessage {
+                width: 100%;
+                padding: ${theme.spacing.sm};
+                color: ${theme.colors.white};
+                border-radius: ${theme.borderRadius.round};
+                font-family: 'Open Sans';
+            }
+            .succesMessage {
+                background: ${theme.colors.success};
+            }
+            .errorMessage {
+                background: ${theme.colors.success};
             }
         }
     }

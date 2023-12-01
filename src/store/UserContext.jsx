@@ -13,13 +13,17 @@ function getInitialState() {
 const UserProvider = (props) => {
     
     const [user, setUser] = useState(getInitialState);
+    const [userId, setUserId] = useState("");
 
     useEffect(() => {
         localStorage.setItem('user', JSON.stringify(user))
     }, [user])
 
     return (
-        <userContext.Provider value={[user, setUser]}>
+        // <userContext.Provider value={[user, setUser]}>
+        //     {props.children}
+        // </userContext.Provider>
+        <userContext.Provider value={{user, setUser, userId, setUserId}}>
             {props.children}
         </userContext.Provider>
     );

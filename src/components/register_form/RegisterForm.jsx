@@ -21,7 +21,7 @@ function RegisterForm() {
     const [username, setUsername] = useState("");
     const [emailInUse, setEmailInUse] = useState(false);
     const [passwordShort, setPasswordShort] = useState(false);
-    const [, setUser] = useContext(userContext);
+    const { setUser} = useContext(userContext);
     const [, setCake] = useContext(itemContext);
 
     const navigate = useNavigate();

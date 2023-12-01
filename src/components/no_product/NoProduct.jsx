@@ -10,7 +10,7 @@ function NoProduct() {
 
     const [admin] = useContext(adminContext);
     const [, setCake] = useContext(itemContext);
-    const [user] = useContext(userContext);
+    const {user} = useContext(userContext);
 
     const handleGenerate = () => {
         setCake(fakeMenu2);
