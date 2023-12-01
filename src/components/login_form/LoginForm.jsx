@@ -17,7 +17,7 @@ function LoginForm() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { setUser } = useContext(userContext);
+    const { setUser, setUserId } = useContext(userContext);
     const [, setCake] = useContext(itemContext);
 
     const navigate = useNavigate();
@@ -37,6 +37,7 @@ function LoginForm() {
             await setPersistence(auth, browserSessionPersistence);
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+            setUserId(userCredential.user.uid);
             connectUser(user.uid);
           } catch (error) {
             const errorCode = error.code;

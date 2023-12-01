@@ -10,9 +10,9 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
 
-    const {user} = useContext(userContext);
+    const { user, userId } = useContext(userContext);
 
-    const [cartItems, setCartItems] = useState(localStorage.getItem(`cartItems_${user}`) ? JSON.parse(localStorage.getItem(`cartItems_${user}`)) : []);
+    const [cartItems, setCartItems] = useState(localStorage.getItem(`cartItems_${userId}`) ? JSON.parse(localStorage.getItem(`cartItems_${userId}`)) : []);
 
     const addToCart = (item) => {
         const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -63,16 +63,16 @@ export const CartProvider = ({ children }) => {
       };
 
       useEffect(() => {
-        localStorage.setItem(`cartItems_${user}`, JSON.stringify(cartItems));
+        localStorage.setItem(`cartItems_${userId}`, JSON.stringify(cartItems));
       }, [cartItems]);
 
       useEffect(() => {
-        const cartSave = localStorage.getItem(`cartItems_${user}`);
+        const cartSave = localStorage.getItem(`cartItems_${userId}`);
         if (cartSave) {
         setCartItems(JSON.parse(cartSave));
         } else {
           setCartItems([]);
-          localStorage.setItem(`cartItems_${user}`, JSON.stringify(cartItems));
+          localStorage.setItem(`cartItems_${userId}`, JSON.stringify(cartItems));
         }
       }, [user]);
 

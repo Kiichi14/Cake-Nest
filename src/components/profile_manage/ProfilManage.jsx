@@ -42,7 +42,6 @@ function ProfileManage(props) {
             await signOut(auth);
             navigate('/');
         } catch (error) {
-            console.log(error);
             setErrorEmail(true);
         }
     }
@@ -50,7 +49,6 @@ function ProfileManage(props) {
     const handleSubmitPassword = async (event) => {
         event.preventDefault();
         updatePassword(auth.currentUser, newPassword).then(() => {
-            console.log('updated');
             setSuccessPassword(true);
             setTimeout(() => {
                 setSuccessPassword(false);

@@ -21,7 +21,7 @@ function RegisterForm() {
     const [username, setUsername] = useState("");
     const [emailInUse, setEmailInUse] = useState(false);
     const [passwordShort, setPasswordShort] = useState(false);
-    const { setUser} = useContext(userContext);
+    const { setUser, setUserId } = useContext(userContext);
     const [, setCake] = useContext(itemContext);
 
     const navigate = useNavigate();
@@ -43,6 +43,7 @@ function RegisterForm() {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
+            setUserId(user.uid)
             create(user.uid, username);
         })
         .catch((error) => {
