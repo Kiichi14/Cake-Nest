@@ -23,7 +23,7 @@ function AddProductForm() {
         const newTitle = title;
         const newImageSource = imageSource;
         const newPrice = price;
-        cakeCopy.push({id: id, title: newTitle, imageSource: newImageSource, price: newPrice});
+        cakeCopy.push({id: id, title: newTitle, imageSource: newImageSource, price: newPrice, isAvailable: true});
         addProduct(auth.currentUser.uid, {id: id, title: newTitle, imageSource: newImageSource, price: newPrice, isAvailable: true});
         setCake(cakeCopy);
         setSuccess(!success);

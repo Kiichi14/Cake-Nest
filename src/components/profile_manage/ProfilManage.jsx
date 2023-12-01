@@ -3,11 +3,10 @@ import styled from "styled-components";
 import { theme } from "../../theme/Theme";
 import PropTypes from 'prop-types';
 import { useState } from "react";
-import { MdOutlineEmail } from "react-icons/md";
 import { updatePassword, onAuthStateChanged, signOut, verifyBeforeUpdateEmail } from "firebase/auth";
-import { RiLockPasswordLine } from "react-icons/ri";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import EditProfileForm from "../edit-profile-form/EditProfileForm";
 
 function ProfileManage(props) {
 
@@ -71,25 +70,25 @@ function ProfileManage(props) {
                     <h3>Editer vos informations</h3>
                 </div>
                 <div className="manage-form">
-                    <form className="email-manager" action="submit" onSubmit={handleSubmitEmail}>
-                        <p className="form-title">Email</p>
-                        <div className="form-group">
-                            <MdOutlineEmail className="svg-input"/>
-                            <input type="email" name="email" value={emailAuth} onChange={handleChange}/>
-                        </div>
-                        {errorEmail ? <p className="errorMessage">Une erreur est apparue réessayer plus tard</p> : "" }
-                        <button type="submit">Enregistrer</button>
-                    </form>
-                    <form className="password-manager" action="submit" onSubmit={handleSubmitPassword}>
-                        <p className="form-title">Mot de passe</p>
-                        <div className="form-group">
-                            <RiLockPasswordLine className="svg-input"/>
-                            <input type="password" name="password" value={newPassword} onChange={handleChange}/>
-                        </div>
-                        {successPassword ? <p className="succesMessage">Mot de passe mis a jour</p> : "" }
-                        {errorPassword ? <p className="errorMessage">Une erreur est apparue réessayer plus tard</p> : "" }
-                        <button type="submit">Enregistrer</button>
-                    </form>
+                    <EditProfileForm 
+                        editFunc={handleSubmitEmail}
+                        title="Email"
+                        type="email"
+                        inputValue={emailAuth}
+                        inputChange={handleChange}
+                        errorMessageEmail={errorEmail}
+                        inputName="email"
+                    />
+                    <EditProfileForm 
+                        editFunc={handleSubmitPassword}
+                        title="Mot de Passe"
+                        type="password"
+                        inputValue={newPassword}
+                        inputChange={handleChange}
+                        errorMessagePassword={errorPassword}
+                        successMessagePassword={successPassword}
+                        inputName="password"
+                    />
                 </div>
             </ProfilManageStyled>
         </>
@@ -148,53 +147,5 @@ const ProfilManageStyled = styled.div `
         display: flex;
         flex-direction: column;
         gap: ${theme.spacing.md};
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: ${theme.spacing.md};
-            align-items: center;
-            .form-title {
-                font-family: 'Pacifico';
-                font-size: ${theme.fonts.size.P2};
-            }
-            .form-group {
-                width: 100%;
-                position: relative;
-            }
-            & .form-group svg {
-                position: absolute;
-                top: 50%;
-                left: 15px;
-                transform: translateY(-50%);
-            }
-            input{
-                width: 100%;
-                padding: ${theme.spacing.sm} ${theme.spacing.xl};
-                border-radius: ${theme.borderRadius.extraRound};
-                border: none;
-                background: ${theme.colors.greyLight};
-            }
-            button {
-                background: ${theme.colors.primary_cake};
-                color: ${theme.colors.white};
-                padding: ${theme.spacing.sm};
-                width: 50%;
-                border-radius: ${theme.borderRadius.extraRound};
-                border: none;
-            }
-            .succesMessage, .errorMessage {
-                width: 100%;
-                padding: ${theme.spacing.sm};
-                color: ${theme.colors.white};
-                border-radius: ${theme.borderRadius.round};
-                font-family: 'Open Sans';
-            }
-            .succesMessage {
-                background: ${theme.colors.success};
-            }
-            .errorMessage {
-                background: ${theme.colors.success};
-            }
-        }
     }
 `

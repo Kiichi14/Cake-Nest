@@ -20,9 +20,6 @@ const UserProvider = (props) => {
     }, [user])
 
     return (
-        // <userContext.Provider value={[user, setUser]}>
-        //     {props.children}
-        // </userContext.Provider>
         <userContext.Provider value={{user, setUser, userId, setUserId}}>
             {props.children}
         </userContext.Provider>
